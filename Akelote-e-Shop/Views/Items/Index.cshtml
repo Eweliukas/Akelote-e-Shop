@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Akelote_e_Shop.Models.Item>
+
+@{
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Items</h2>
+@if (!Model.Any())
+{
+    <p>We don't have any items yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(item.Title, "Edit", "Items", new { id = item.Id }, null)</td>
+                    <td>@item.Price </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
