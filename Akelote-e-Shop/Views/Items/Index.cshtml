@@ -16,15 +16,18 @@ else
             <tr>
                 <th>Item</th>
                 <th>Price</th>
+                <th>Add to Cart</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@Html.ActionLink(item.Title, "Edit", "Items", new { id = item.Id }, null)</td>
-                    <td>@item.Price </td>
-                </tr>
+            <tr>
+                <td>@Html.ActionLink(item.Title, "Edit", "Items", new { id = item.Id }, null)</td>
+                <td>@String.Format("{0:F}", item.Price)
+                            </td>
+                <td class="button">@Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = item.Id }, "")</td>
+            </tr>
             }
         </tbody>
     </table>

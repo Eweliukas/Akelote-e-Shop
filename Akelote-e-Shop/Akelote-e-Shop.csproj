@@ -209,6 +209,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Dtos\ItemDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,9 +220,30 @@
     <Compile Include="Migrations\201803132118518_InitialModel.Designer.cs">
       <DependentUpon>201803132118518_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804031658502_AddedNewClassCart.cs" />
+    <Compile Include="Migrations\201804031658502_AddedNewClassCart.Designer.cs">
+      <DependentUpon>201804031658502_AddedNewClassCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804031701281_UpdatedClassOrder.cs" />
+    <Compile Include="Migrations\201804031701281_UpdatedClassOrder.Designer.cs">
+      <DependentUpon>201804031701281_UpdatedClassOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804031703460_UpdatedClassOrderItem.cs" />
+    <Compile Include="Migrations\201804031703460_UpdatedClassOrderItem.Designer.cs">
+      <DependentUpon>201804031703460_UpdatedClassOrderItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804031706094_AddingNewDbSetCart.cs" />
+    <Compile Include="Migrations\201804031706094_AddingNewDbSetCart.Designer.cs">
+      <DependentUpon>201804031706094_AddingNewDbSetCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804031714456_UpdatedCartClass.cs" />
+    <Compile Include="Migrations\201804031714456_UpdatedCartClass.Designer.cs">
+      <DependentUpon>201804031714456_UpdatedCartClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image.cs" />
@@ -232,9 +254,12 @@
     <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\Property.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-lumen.css" />
@@ -296,6 +321,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Items\ItemForm.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,6 +343,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803132118518_InitialModel.resx">
       <DependentUpon>201803132118518_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804031658502_AddedNewClassCart.resx">
+      <DependentUpon>201804031658502_AddedNewClassCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804031701281_UpdatedClassOrder.resx">
+      <DependentUpon>201804031701281_UpdatedClassOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804031703460_UpdatedClassOrderItem.resx">
+      <DependentUpon>201804031703460_UpdatedClassOrderItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804031706094_AddingNewDbSetCart.resx">
+      <DependentUpon>201804031706094_AddingNewDbSetCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804031714456_UpdatedCartClass.resx">
+      <DependentUpon>201804031714456_UpdatedCartClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

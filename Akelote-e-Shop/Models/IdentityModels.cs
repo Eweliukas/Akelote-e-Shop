@@ -30,6 +30,7 @@ namespace Akelote_e_Shop.Models
         public DbSet<OrderItem> OrderItem { get; set; }
         public DbSet<Property> Property { get; set; }
         public DbSet<ItemProperty> ItemProperty { get; set; }
+        public DbSet<Cart> Cart { get; set; }
 
 
         public ApplicationDbContext()

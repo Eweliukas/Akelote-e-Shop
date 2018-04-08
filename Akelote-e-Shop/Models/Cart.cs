@@ -6,16 +6,14 @@ using System.Web;
 
 namespace Akelote_e_Shop.Models
 {
-    public class OrderItem
+    public class Cart
     {
-        public int Id { get; set; }
+        [Key]
+        public int RecordId { get; set; }
+        public string CartId { get; set; }
         public int ItemId { get; set; }
-        public int OrderId { get; set; }
-        [Required]
-        public int OrderPrice { get; set; }
-
-        public int Quantity { get; set; }
+        public int Count { get; set; }
+        public DateTime DateCreated { get; set; }
         public virtual Item Item { get; set; }
-        public virtual Order Order { get; set; }
     }
 }
