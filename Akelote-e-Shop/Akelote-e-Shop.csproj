@@ -215,7 +215,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ItemFormViewModel.cs" />
+    <Compile Include="ViewModels\ItemDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ItemFormViewModel.cs" />
     <Compile Include="Migrations\201803132118518_InitialModel.cs" />
     <Compile Include="Migrations\201803132118518_InitialModel.Designer.cs">
       <DependentUpon>201803132118518_InitialModel.cs</DependentUpon>
@@ -322,6 +323,7 @@
     <Content Include="Views\Items\ItemForm.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -378,7 +380,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50605</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50605/</IISUrl>
+          <IISUrl>http://localhost:50606/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

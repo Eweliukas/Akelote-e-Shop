@@ -23,7 +23,7 @@ namespace Akelote_e_Shop.Models
 
         public DbSet<Admin> Admin { get; set; }
         public DbSet<User> User { get; set; }
-        public DbSet<Category> Categoty { get; set; }
+        public DbSet<Category> Category { get; set; }
         public DbSet<Image> Image { get; set; }
         public DbSet<Item> Item { get; set; }
         public DbSet<Order> Order { get; set; }

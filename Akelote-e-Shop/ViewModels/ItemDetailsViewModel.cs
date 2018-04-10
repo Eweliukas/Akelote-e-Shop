@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Akelote_e_Shop
+namespace Akelote_e_Shop.ViewModels
 {
-    public class ItemFormViewModel
+    public class ItemDetailsViewModel
     {
         public IEnumerable<Category> Categories { get; set; }
         public Item Item { get; set; }

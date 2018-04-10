@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Akelote_e_Shop.ViewModels;
 
 namespace Akelote_e_Shop.Controllers
 {
@@ -23,7 +24,7 @@ namespace Akelote_e_Shop.Controllers
 
         public ActionResult New()
         {
-            var categories = _context.Categoty.ToList();
+            var categories = _context.Category.ToList();
             var viewModel = new ItemFormViewModel
             {
                 Item = new Item(),
@@ -40,7 +41,7 @@ namespace Akelote_e_Shop.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var categories = _context.Categoty.ToList();
+                var categories = _context.Category.ToList();
                 var viewModel = new ItemFormViewModel
                 {
                     Item = item,
@@ -87,10 +88,20 @@ namespace Akelote_e_Shop.Controllers
             var viewModel = new ItemFormViewModel
             {
                 Item = item,
-                Categories = _context.Categoty.ToList()
+                Categories = _context.Category.ToList()
             };
 
             return View("itemForm", viewModel);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var item = _context.Item.SingleOrDefault(c => c.Id == id);
+
+            if (item == null)
+                return HttpNotFound();
+
+            return View("details", item);
         }
     }
 }
