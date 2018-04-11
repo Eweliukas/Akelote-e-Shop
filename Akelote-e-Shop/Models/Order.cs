@@ -30,7 +30,9 @@ namespace Akelote_e_Shop.Models
         public string Phone { get; set; }
         public string Email { get; set; }
 
-        public List<OrderItem> OrderItems { get; set; }
+        public virtual User User { get; set; }
+
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
 
 
     }

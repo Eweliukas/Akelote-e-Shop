@@ -12,7 +12,9 @@ namespace Akelote_e_Shop.Models
         public string Name { get; set; }
         public int CategoryId { get; set; }
 
-        public virtual ICollection<ItemProperty> ItemProperty { get; set; }
+        public virtual Category Category { get; set; }
+
+        public virtual ICollection<ItemProperty> ItemProperties { get; set; }
 
     }
 }

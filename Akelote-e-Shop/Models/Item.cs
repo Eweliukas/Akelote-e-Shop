@@ -18,7 +18,12 @@ namespace Akelote_e_Shop.Models
         public string Description { get; set; }
         public int? Discount { get; set; }
 
-        public virtual ICollection<ItemProperty> ItemProperty { get; set; }
+        public virtual ICollection<ItemProperty> ItemProperties { get; set; }
+
+        public virtual ICollection<Image> Images { get; set; }
+
+        public virtual Category Category { get; set; }
+
 
     }
 }

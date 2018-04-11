@@ -25,6 +25,8 @@ namespace Akelote_e_Shop.Models
         [Phone]
         public string PhoneNumber { get; set; }
         
-        public bool IsBloked { get; set; }
+        public bool IsBlocked { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

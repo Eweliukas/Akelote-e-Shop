@@ -12,5 +12,9 @@ namespace Akelote_e_Shop.Models
         public int? ParentId { get; set; }
         public int? Discount { get; set; }
 
+        public virtual ICollection<Item> Items { get; set; }
+
+        public virtual ICollection<Property> Properties { get; set; }
+
     }
 }

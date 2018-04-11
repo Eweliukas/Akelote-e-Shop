@@ -215,6 +215,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804111637518_AddedForeignKeyValues.cs" />
+    <Compile Include="Migrations\201804111637518_AddedForeignKeyValues.Designer.cs">
+      <DependentUpon>201804111637518_AddedForeignKeyValues.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ItemDetailsViewModel.cs" />
     <Compile Include="ViewModels\ItemFormViewModel.cs" />
     <Compile Include="Migrations\201803132118518_InitialModel.cs" />
@@ -360,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804031714456_UpdatedCartClass.resx">
       <DependentUpon>201804031714456_UpdatedCartClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804111637518_AddedForeignKeyValues.resx">
+      <DependentUpon>201804111637518_AddedForeignKeyValues.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

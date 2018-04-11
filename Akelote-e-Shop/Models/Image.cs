@@ -10,6 +10,9 @@ namespace Akelote_e_Shop.Models
     {
         public int Id { get; set; }
         public int ItemId { get; set; }
+
+        public virtual Item Item { get; set; }
+
         [Required]
         public string HyperLink { get; set; }
         public string Caption { get; set; }
