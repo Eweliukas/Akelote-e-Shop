@@ -219,6 +219,11 @@
     <Compile Include="Migrations\201804111637518_AddedForeignKeyValues.Designer.cs">
       <DependentUpon>201804111637518_AddedForeignKeyValues.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804112245454_SeedUsers.cs" />
+    <Compile Include="Migrations\201804112245454_SeedUsers.Designer.cs">
+      <DependentUpon>201804112245454_SeedUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\ItemDetailsViewModel.cs" />
     <Compile Include="ViewModels\ItemFormViewModel.cs" />
     <Compile Include="Migrations\201803132118518_InitialModel.cs" />
@@ -245,7 +250,6 @@
     <Compile Include="Migrations\201804031714456_UpdatedCartClass.Designer.cs">
       <DependentUpon>201804031714456_UpdatedCartClass.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -267,6 +271,10 @@
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Akelote-e-Shop-20180313072122.mdf" />
+    <Content Include="App_Data\aspnet-Akelote-e-Shop-20180313072122_log.ldf">
+      <DependentUpon>aspnet-Akelote-e-Shop-20180313072122.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -330,7 +338,6 @@
     <Content Include="Views\Items\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
@@ -367,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804111637518_AddedForeignKeyValues.resx">
       <DependentUpon>201804111637518_AddedForeignKeyValues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804112245454_SeedUsers.resx">
+      <DependentUpon>201804112245454_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
