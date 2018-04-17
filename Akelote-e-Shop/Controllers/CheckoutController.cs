@@ -23,6 +23,7 @@ namespace Akelote_e_Shop.Controllers
         [HttpPost]
         public async Task<ActionResult> Pay(Payment payment)
         {
+            payment.Amount = ShoppingCart.GetCart(this).GetTotal();
             var http = new HttpClient();
             http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
                 "Basic", 

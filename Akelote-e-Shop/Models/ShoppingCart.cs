@@ -103,17 +103,17 @@ namespace Akelote_e_Shop.Models
             return count ?? 0;
         }
 
-        public decimal GetTotal()
+        public int GetTotal()
         {
             // Multiply album price by count of that album to get 
             // the current price for each of those albums in the cart
             // sum all album price totals to get the cart total
-            decimal? total = (from cartItems in storeDB.Cart
+            int? total = (from cartItems in storeDB.Cart
                               where cartItems.CartId == ShoppingCartId
                               select (int?)cartItems.Count *
                               cartItems.Item.Price).Sum();
 
-            return total ?? decimal.Zero;
+            return total ?? 0;
         }
 
         public int CreateOrder(Order order)
