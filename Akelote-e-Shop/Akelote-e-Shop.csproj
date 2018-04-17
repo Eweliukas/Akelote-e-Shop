@@ -337,6 +337,7 @@
     <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\Checkout\Success.cshtml" />
     <Content Include="Views\Checkout\Error.cshtml" />
+    <Content Include="Views\Manage\EditData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\User\" />

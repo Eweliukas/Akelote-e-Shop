@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Akelote_e_Shop.Models
 {
@@ -48,6 +45,21 @@ namespace Akelote_e_Shop.Models
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class EditDataViewModel
+    {
+        [Display(Name = "First name")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Last name")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Phone number")]
+        public string PhoneNumber { get; set; }
+
+        [Display(Name = "Address")]
+        public string Address { get; set; }
     }
 
     public class AddPhoneNumberViewModel

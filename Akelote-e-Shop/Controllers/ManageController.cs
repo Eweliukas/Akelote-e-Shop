@@ -57,6 +57,7 @@ namespace Akelote_e_Shop.Controllers
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                : message == ManageMessageId.EditDataSuccess ? "You have successfully changed your personal data."
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
@@ -150,6 +151,33 @@ namespace Akelote_e_Shop.Controllers
                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
+        }
+        //
+        // GET: /Manage/EditData
+        public ActionResult EditData()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Manage/EditData
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditData(EditDataViewModel model)
+        {
+            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            //if (result.Succeeded)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                return RedirectToAction("Index", new { Message = ManageMessageId.EditDataSuccess });
+            }
+            //AddErrors(result);
+            //TODO: Implement request to send changes
+            //return View(model);
         }
 
         //
@@ -268,6 +296,7 @@ namespace Akelote_e_Shop.Controllers
         {
             AddPhoneSuccess,
             ChangePasswordSuccess,
+            EditDataSuccess,
             SetPasswordSuccess,
             RemovePhoneSuccess,
             Error

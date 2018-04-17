@@ -12,7 +12,6 @@
     <dl class="dl-horizontal">
         <dt>Password:</dt>
         <dd>
-            [
             @if (Model.HasPassword)
             {
                 @Html.ActionLink("Change your password", "ChangePassword")
@@ -21,7 +20,10 @@
             {
                 @Html.ActionLink("Create", "SetPassword")
             }
-            ]
+        </dd>
+        <dt>Edit personal data:</dt>
+        <dd>
+            @Html.ActionLink("Edit", "EditData")
         </dd>
     </dl>
 </div>
