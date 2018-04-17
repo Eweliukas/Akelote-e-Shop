@@ -41,6 +41,8 @@ namespace Akelote_e_Shop.Controllers
         // GET: /Store/AddToCart/5
         public ActionResult AddToCart(int id)
         {
+            // TODO: switch to HTTP POST
+
             // Retrieve the album from the database
             var addedItem = storeDB.Item
                 .Single(item => item.Id == id);
@@ -89,6 +91,11 @@ namespace Akelote_e_Shop.Controllers
 
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");
+        }
+
+        public ActionResult Count()
+        {
+            return Content("{\"count\": " + ShoppingCart.GetCart(this).GetCount().ToString() + "}");
         }
     }
 }

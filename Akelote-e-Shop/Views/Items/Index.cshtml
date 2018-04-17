@@ -4,6 +4,45 @@
     ViewBag.Title = "Item";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.add-to-cart').click(function () {
+                var row = $(this).closest('tr');
+                $.post('/ShoppingCart/AddToCart/' + $(this).data('id'))
+                    .done(function () {
+                        row
+                            .clone()
+                            .css({
+                                position: 'fixed',
+                                left: row.offset().left,
+                                top: row.offset().top,
+                            })
+                            .appendTo(row.closest('tbody'))
+                            .animate({
+                                left: 0,
+                                top: 0,
+                                opacity: 0
+                            }, 2000, function () {
+                                $(this).detach();
+                            });
+                        $.getJSON('/ShoppingCart/Count', function (data) {
+                            $('#num-items-in-cart').text(data.count);
+                        });
+                    })
+                    .fail(function () {
+                        window.alert('An error occurred. Please try again.');
+                    });
+                return false;
+            });
+        });
+    </script>
+}
+
 <h2>Items</h2>
 @if (!Model.Any())
 {
@@ -25,7 +64,7 @@ else
             <tr>
                 <td>@Html.ActionLink(item.Title, "Details", "Items", new { id = item.Id }, null)</td>
                 <td>@item.ReadablePrice</td>
-                <td class="button">@Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = item.Id }, "")</td>
+                <td class="button"><a href="#" class="add-to-cart" data-id="@item.Id">Add to Cart</a></td>
             </tr>
             }
         </tbody>
