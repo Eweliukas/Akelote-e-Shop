@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery-1.10.2.min.js"
+            type="text/javascript"></script>
+   @*
+    <script type="text/javascript">
+        $(function () {
+            $('#credit-card').submit(function () {
+                var xhr = $.ajax({
+                    url: 'https://mock-payment-processor.appspot.com/v1/payment',
+                    method: 'POST',
+                    data: JSON.stringify({
+                        amount: parseInt($(this).find('[name=amount]').val()),
+                        number: $(this).find('[name=number]').val(),
+                        holder: $(this).find('[name=holder]').val(),
+                        exp_year: parseInt($(this).find('[name=exp_year]').val()),
+                        exp_month: parseInt($(this).find('[name=exp_month]').val()),
+                        cvv: $(this).find('[name=cvv]').val()
+                    }),
+                    contentType: 'text/plain',
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    username: 'technologines',
+                    password: 'platformos',
+                    crossDomain: true
+                });
+                return false;
+            });
+        });
+    </script>
+    *@
+}
+
+<h2>Checkout</h2>
+
+@using (Html.BeginForm("Pay", "Checkout"))
+{
+    <input type="hidden" name="amount" value="100" />
+    <table>
+        <tr>
+            <th>Credit card number:</th>
+            <td><input type="text" name="Number" maxlength="16" /></td>
+        </tr>
+        <tr>
+            <th>Full name of holder:</th>
+            <td><input type="text" name="Holder" maxlength="32" /></td>
+        </tr>
+        <tr>
+            <th>Expiry year:</th>
+            <td><input type="number" name="ExpiryYear" min="1970" /></td>
+        </tr>
+        <tr>
+            <th>Expiry month:</th>
+            <td><input type="number" name="ExpiryMonth" min="1" max="12" /></td>
+        </tr>
+        <tr>
+            <th>CVV:</th>
+            <td><input type="number" name="Cvv" maxlength="3" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="Pay" />
+}

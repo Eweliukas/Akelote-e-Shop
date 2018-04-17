@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -24,6 +25,18 @@ namespace Akelote_e_Shop.Models
 
         public virtual Category Category { get; set; }
 
+        [NotMapped]
+        public string ReadablePrice
+        {
+            get
+            {
+                return PriceToReadable(Price);
+            }
+        }
 
+        public static string PriceToReadable(int price)
+        {
+            return (price / 100) + "," + (price % 100) + " €";
+        }
     }
 }

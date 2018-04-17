@@ -24,8 +24,7 @@ else
             {
             <tr>
                 <td>@Html.ActionLink(item.Title, "Details", "Items", new { id = item.Id }, null)</td>
-                <td>@String.Format("{0:F2}", (double) item.Price / 100)
-                            </td>
+                <td>@item.ReadablePrice</td>
                 <td class="button">@Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = item.Id }, "")</td>
             </tr>
             }
