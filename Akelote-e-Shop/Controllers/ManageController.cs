@@ -165,7 +165,7 @@ namespace Akelote_e_Shop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditData(EditDataViewModel model)
         {
-            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            //var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
             //if (result.Succeeded)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
