@@ -31,7 +31,7 @@ namespace Akelote_e_Shop.Controllers
                 Categories = categories
             };
 
-            return View("CustomerForm", viewModel);
+            return View("itemForm", viewModel);
 
         }
 
@@ -48,7 +48,7 @@ namespace Akelote_e_Shop.Controllers
                     Categories = categories
                 };
 
-                return View("CustomerForm", viewModel);
+                return View("itemForm", viewModel);
             }
 
             if (item.Id == 0)

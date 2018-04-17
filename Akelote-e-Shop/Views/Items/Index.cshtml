@@ -8,39 +8,7 @@
 @section Scripts
 {
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
-
-    <script type="text/javascript">
-        $(function () {
-            $('.add-to-cart').click(function () {
-                var row = $(this).closest('tr');
-                $.post('/ShoppingCart/AddToCart/' + $(this).data('id'))
-                    .done(function () {
-                        row
-                            .clone()
-                            .css({
-                                position: 'fixed',
-                                left: row.offset().left,
-                                top: row.offset().top,
-                            })
-                            .appendTo(row.closest('tbody'))
-                            .animate({
-                                left: 0,
-                                top: 0,
-                                opacity: 0
-                            }, 2000, function () {
-                                $(this).detach();
-                            });
-                        $.getJSON('/ShoppingCart/Count', function (data) {
-                            $('#num-items-in-cart').text(data.count);
-                        });
-                    })
-                    .fail(function () {
-                        window.alert('An error occurred. Please try again.');
-                    });
-                return false;
-            });
-        });
-    </script>
+    <script type="text/javascript" src="~/Scripts/add-to-cart.js"></script>
 }
 
 <h2>Items</h2>
@@ -50,23 +18,28 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Item</th>
-                <th>Price</th>
-                <th>Add to Cart</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-            <tr>
-                <td>@Html.ActionLink(item.Title, "Details", "Items", new { id = item.Id }, null)</td>
-                <td>@item.ReadablePrice</td>
-                <td class="button"><a href="#" class="add-to-cart" data-id="@item.Id">Add to Cart</a></td>
-            </tr>
-            }
-        </tbody>
-    </table>
+    if (User.IsInRole("CanUseAdminAccess"))
+    {
+        <a href="/Items/New">Add new item</a>
+    }
+
+    <div class="catalog">
+    @foreach (var item in Model)
+    {
+        <div class="catalog-item">
+            <div class="catalog-item-image">
+                <a href="/Items/Details/@item.Id"><img src="@(item.Images.Select(i => i.HyperLink).FirstOrDefault() ?? "/Content/NoImage.png")" /></a>
+            </div>
+            <div class="catalog-item-title">
+                @Html.ActionLink(item.Title, "Details", "Items", new { id = item.Id }, null)
+            </div>
+            <div class="catalog-item-price">
+                @item.ReadablePrice
+            </div>
+            <div class="catalog-item-add-to-cart">
+                <a href="#" class="add-to-cart" data-id="@item.Id">Add to Cart</a>
+            </div>
+        </div>
+    }
+    </div>
 }

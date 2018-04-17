@@ -1,7 +1,44 @@
-﻿
+﻿@model Akelote_e_Shop.ViewModels.ItemFormViewModel
+
 @{
     ViewBag.Title = "ItemForm";
 }
 
-<h2>ItemForm</h2>
+@if (Model.Editing)
+{
+    <h2>Edit item</h2>
+}
+else
+{
+    <h2>Create new item</h2>
+}
+
+@using (Html.BeginForm("Save", "Items", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+
+    @Html.AntiForgeryToken()
+
+    <dl>
+        <dt>@Html.LabelFor(m => m.Item.Title)</dt>
+        <dd>@Html.TextBoxFor(m => m.Item.Title)</dd>
+    
+        <dt>@Html.LabelFor(m => m.Item.Category)</dt>
+        <dd>@Html.DropDownListFor(m => m.Item.CategoryId, Model.Categories.Select(c => new SelectListItem { Text = c.Title, Selected = c.Id == Model.Item.CategoryId, Value = c.Id.ToString() }))</dd>
+    
+        <dt>@Html.LabelFor(m => m.Item.Price)</dt>
+        <dd>@Html.TextBoxFor(m => m.Item.Price)</dd>
+    
+        <dt>@Html.LabelFor(m => m.Item.Images)</dt>
+        <dd>[TODO]</dd>
+   
+        <dt>@Html.LabelFor(m => m.Item.Discount)</dt>
+        <dd>@Html.TextBoxFor(m => m.Item.Discount)</dd>
+        
+        <dt>@Html.LabelFor(m => m.Item.Description)</dt>
+        <dd>@Html.TextAreaFor(m => m.Item.Description)</dd>
+    </dl>
+    
+    <input type="submit" value="Submit" />
+}
 
