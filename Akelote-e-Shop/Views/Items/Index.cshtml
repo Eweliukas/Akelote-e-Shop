@@ -12,17 +12,18 @@
 }
 
 <h2>Items</h2>
+
+@if (User.IsInRole("CanUseAdminAccess"))
+{ 
+    <a href="/Items/New">Add new item</a>
+}
+
 @if (!Model.Any())
 {
     <p>We don't have any items yet.</p>
 }
 else
 {
-    if (User.IsInRole("CanUseAdminAccess"))
-    {
-        <a href="/Items/New">Add new item</a>
-    }
-
     <div class="catalog">
     @foreach (var item in Model)
     {

@@ -1,6 +1,6 @@
 ﻿$(function () {
     $('.add-to-cart').click(function () {
-        var row = $(this).closest('tr');
+        var row = $(this).closest('.catalog-item');
         $.post('/ShoppingCart/AddToCart/' + $(this).data('id'))
             .done(function () {
                 row
@@ -10,7 +10,7 @@
                         left: row.offset().left,
                         top: row.offset().top
                     })
-                    .appendTo(row.closest('tbody'))
+                    .appendTo(row.closest('.catalog'))
                     .animate({
                         left: 0,
                         top: 0,
