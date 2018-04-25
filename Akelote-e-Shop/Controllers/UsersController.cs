@@ -23,7 +23,7 @@ namespace Akelote_e_Shop.Controllers
 
         public ActionResult New()
         {
-            var user = new User();
+            var user = new ApplicationUser();
 
             return View("UserForm", user);
         }

@@ -9,7 +9,7 @@ namespace Akelote_e_Shop.Models
     public class Order
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public int ApplicationUserId { get; set; }
         public DateTime Date { get; set; }
         public OrderStatus Status { get; set; }
         public string Destination { get; set; }
@@ -30,7 +30,7 @@ namespace Akelote_e_Shop.Models
         public string Phone { get; set; }
         public string Email { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<OrderItem> OrderItems { get; set; }
 

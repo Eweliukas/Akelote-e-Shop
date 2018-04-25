@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -9,6 +11,19 @@ namespace Akelote_e_Shop.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        [Required]
+        [StringLength(50)]
+        public string FirstName { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string LastName { get; set; }
+
+        public string Address { get; set; }
+       
+        public bool IsBlocked { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -22,7 +37,7 @@ namespace Akelote_e_Shop.Models
     {
 
         public DbSet<Admin> Admin { get; set; }
-        public DbSet<User> User { get; set; }
+        //public DbSet<User> User { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Image> Image { get; set; }
         public DbSet<Item> Item { get; set; }

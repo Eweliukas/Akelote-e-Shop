@@ -209,6 +209,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Migrations\201804251635575_FromTwoUsersLeftOneASPNETUser.cs" />
+    <Compile Include="Migrations\201804251635575_FromTwoUsersLeftOneASPNETUser.Designer.cs">
+      <DependentUpon>201804251635575_FromTwoUsersLeftOneASPNETUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -266,7 +270,6 @@
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\PaymentResponseViewModel.cs" />
@@ -379,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804112245454_SeedUsers.resx">
       <DependentUpon>201804112245454_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804251635575_FromTwoUsersLeftOneASPNETUser.resx">
+      <DependentUpon>201804251635575_FromTwoUsersLeftOneASPNETUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
