@@ -31,6 +31,21 @@ namespace Akelote_e_Shop
         {
         }
 
+        public async Task<IdentityResult> ChangePersonalDataAsync(string userId, string firstName, string lastName, string phoneNumber, string address)
+        {
+            var user = await Store.FindByIdAsync(userId);
+
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.PhoneNumber = phoneNumber;
+            user.Address = address;
+
+            var result = await UserValidator.ValidateAsync(user);
+            await Store.UpdateAsync(user);
+
+            return result;
+        }
+
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));

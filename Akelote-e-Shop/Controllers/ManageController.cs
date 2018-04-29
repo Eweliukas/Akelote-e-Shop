@@ -156,7 +156,17 @@ namespace Akelote_e_Shop.Controllers
         // GET: /Manage/EditData
         public ActionResult EditData()
         {
-            return View();
+            var currentUser = UserManager.FindById(User.Identity.GetUserId());
+
+            var model = new EditDataViewModel
+            {
+                FirstName = currentUser.FirstName,
+                LastName = currentUser.LastName,
+                PhoneNumber = currentUser.PhoneNumber,
+                Address = currentUser.Address
+            };
+
+            return View(model);
         }
 
         //
@@ -165,19 +175,19 @@ namespace Akelote_e_Shop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditData(EditDataViewModel model)
         {
-            //var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-            //if (result.Succeeded)
+            if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
+                var result = await UserManager.ChangePersonalDataAsync(User.Identity.GetUserId(), model.FirstName, model.LastName, model.PhoneNumber, model.Address);
+
+                if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    return RedirectToAction("Index", new { Message = ManageMessageId.EditDataSuccess });
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.EditDataSuccess });
+
+                AddErrors(result);
             }
-            //AddErrors(result);
-            //TODO: Implement request to send changes
-            //return View(model);
+
+            return View(model);
         }
 
         //

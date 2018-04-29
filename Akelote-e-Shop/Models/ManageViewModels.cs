@@ -49,13 +49,16 @@ namespace Akelote_e_Shop.Models
 
     public class EditDataViewModel
     {
+        [Required]
         [Display(Name = "First name")]
         public string FirstName { get; set; }
 
+        [Required]
         [Display(Name = "Last name")]
         public string LastName { get; set; }
 
         [Display(Name = "Phone number")]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Address")]
