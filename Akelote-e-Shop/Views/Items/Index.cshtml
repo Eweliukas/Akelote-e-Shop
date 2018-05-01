@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Akelote_e_Shop.Models.Item>
 
 @{
-    ViewBag.Title = "Item";
+    ViewBag.Title = "Items";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,8 +11,6 @@
     <script type="text/javascript" src="~/Scripts/add-to-cart.js"></script>
 }
 
-<h2>Items</h2>
-
 @if (User.IsInRole("CanUseAdminAccess"))
 { 
     <a href="/Items/New">Add new item</a>
@@ -20,7 +18,12 @@
 
 @if (!Model.Any())
 {
-    <p>We don't have any items yet.</p>
+    <div class="no-data">
+        
+        <i class="material-icons">cloud_off</i>
+        <p>No items yet...</p>
+
+    </div>
 }
 else
 {
