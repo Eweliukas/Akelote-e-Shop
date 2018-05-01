@@ -1,5 +1,6 @@
 ﻿using Akelote_e_Shop.Models;
 using Akelote_e_Shop.ViewModels;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,11 @@ namespace Akelote_e_Shop.Controllers
         [HttpPost]
         public async Task<ActionResult> Pay(Payment payment)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Index", payment);
+            }
+
             payment.Amount = ShoppingCart.GetCart(this).GetTotal();
             var http = new HttpClient();
             http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
@@ -39,10 +45,12 @@ namespace Akelote_e_Shop.Controllers
             }
             else
             {
-                return View("Error", new PaymentResponseViewModel
+                JObject jObject = JObject.Parse(await response.Content.ReadAsStringAsync());
+                foreach(var message in jObject["message"].ToString().Split(new[] { "\n" }, StringSplitOptions.None))
                 {
-                    Message = await response.Content.ReadAsStringAsync()
-                });
+                    ModelState.AddModelError("", message);
+                }
+                return View("Index", payment);
             }
         }
     }

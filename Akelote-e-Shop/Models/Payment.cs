@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace Akelote_e_Shop.Models
 {
@@ -9,9 +10,11 @@ namespace Akelote_e_Shop.Models
         public int Amount { get; set; }
 
         [DataMember]
+        [Required]
         public string Number { get; set; }
 
         [DataMember]
+        [Required]
         public string Holder { get; set; }
 
         [DataMember(Name = "exp_year")]
@@ -21,6 +24,7 @@ namespace Akelote_e_Shop.Models
         public int ExpiryMonth { get; set; }
 
         [DataMember]
+        [Required]
         public string Cvv { get; set; }
     }
 }
