@@ -6,7 +6,6 @@ namespace Akelote_e_Shop.Models
     {
         public bool HasPassword { get; set; }
         public string PhoneNumber { get; set; }
-        public bool BrowserRemembered { get; set; }
     }
 
     public class FactorViewModel

@@ -1,23 +1,28 @@
 ﻿using Akelote_e_Shop.Models;
-using Akelote_e_Shop.ViewModels;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
+using System.Collections.Generic;
 
 namespace Akelote_e_Shop.Controllers
 {
     public class CheckoutController : Controller
     {
-        // GET: Checkout
-        public ActionResult Index()
+        private ApplicationDbContext _context;
+
+        public CheckoutController()
         {
+            _context = new ApplicationDbContext();
+        }
+
+        // GET: Checkout
+        public ActionResult Index(Order order)
+        {
+            HttpContext.Session["order"] = order;
             return View();
         }
 
@@ -39,9 +44,10 @@ namespace Akelote_e_Shop.Controllers
             var response = await http.PostAsJsonAsync(url, payment);
             if (response.StatusCode == System.Net.HttpStatusCode.Created)
             {
+                CreateOrder(ShoppingCart.GetCart(HttpContext));
                 ShoppingCart.GetCart(HttpContext).EmptyCart();
-                // TODO: populate Order model
-                return View("Success");
+
+                return RedirectToAction("../Orders", new { Message = "Order created successfully!" });
             }
             else
             {
@@ -52,6 +58,30 @@ namespace Akelote_e_Shop.Controllers
                 }
                 return View("Index", payment);
             }
+        }
+
+        public ActionResult CreateOrder(ShoppingCart cart)
+        {
+            Order order = (Order)HttpContext.Session["order"];
+
+            _context.Order.Add(order);
+
+            foreach (var cartItem in cart.GetCartItems())
+            {
+                var orderItem = new OrderItem
+                {
+                    OrderId = order.Id,
+                    ItemId = cartItem.ItemId,
+                    Quantity = cartItem.Count,
+                    OrderPrice = cartItem.Item.Price - (cartItem.Item.Discount ?? 0)
+                };
+
+                _context.OrderItem.Add(orderItem);
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Items");
         }
     }
 }

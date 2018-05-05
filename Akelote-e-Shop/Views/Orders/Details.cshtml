@@ -1,0 +1,127 @@
+﻿@model Akelote_e_Shop.Models.Order
+@using Akelote_e_Shop.Models
+
+@{
+    ViewBag.Title = "Order details";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.Label("Total price")
+        </dt>
+
+        <dd>
+            @{
+                string totalDisplayValue = Item.PriceToReadable(Model.GetTotal());
+            }
+            @Html.DisplayFor(model => totalDisplayValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDiscount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDiscount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+    </dl>
+    <table class="table table-striped">
+        <thead class="text-center thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderItems.SingleOrDefault().Item.Category.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderItems.SingleOrDefault().Item.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderItems.SingleOrDefault().Item.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderItems.SingleOrDefault().Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderItems.SingleOrDefault().OrderPrice)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            @foreach (var item in Model.OrderItems.Where(orderItem => orderItem.OrderId.Equals(Model.Id)))
+            {
+                <tr>
+                    <td>
+                        @Html.Label("Category")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @{
+                            string priceDisplayValue = Item.PriceToReadable(item.OrderPrice);
+                        }
+                        @Html.DisplayFor(modelItem => priceDisplayValue)
+                    </td>
+                    <td>
+                        @Html.ActionLink("View item", "../Items/Details", new { id = item.Item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<p>
+    @if (User.IsInRole("CanUseAdminAccess"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    }
+    <br />
+    @Html.ActionLink("Back to List", "Index")
+</p>

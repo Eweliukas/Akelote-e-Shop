@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Akelote_e_Shop.Models
 {
@@ -12,6 +9,7 @@ namespace Akelote_e_Shop.Models
         public int ItemId { get; set; }
         public int OrderId { get; set; }
         [Required]
+        [DisplayName("Order price")]
         public int OrderPrice { get; set; }
 
         public int Quantity { get; set; }

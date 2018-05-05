@@ -26,5 +26,7 @@ namespace Akelote_e_Shop.Models
         [DataMember]
         [Required]
         public string Cvv { get; set; }
+
+        public Order Order { get; set; }
     }
 }

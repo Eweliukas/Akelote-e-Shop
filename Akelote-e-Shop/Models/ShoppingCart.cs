@@ -61,7 +61,6 @@ namespace Akelote_e_Shop.Models
             var cartItem = storeDB.Cart.Single(
                 cart => cart.CartId == ShoppingCartId && cart.RecordId == id);
 
-
             if (cartItem == null)
                 return 0;
 
@@ -93,6 +92,11 @@ namespace Akelote_e_Shop.Models
                 cart => cart.CartId == ShoppingCartId).ToList();
         }
 
+        public List<Item> GetItems()
+        {
+            return GetCartItems().Select(cart => cart.Item).ToList();
+        }
+
         public int GetCount()
         {
             // Get the count of each item in the cart and sum them up
@@ -114,35 +118,6 @@ namespace Akelote_e_Shop.Models
                               cartItems.Item.Price).Sum();
 
             return total ?? 0;
-        }
-
-        public int CreateOrder(Order order)
-        {
-            int orderTotal = 0;
-
-            var cartItems = GetCartItems();
-            // Iterate over the items in the cart, adding the order details for each
-            foreach (var item in cartItems)
-            {
-                var orderItem = new OrderItem
-                {
-                    Id = item.ItemId,
-                    OrderId = order.Id,
-                    OrderPrice = item.Item.Price,
-                    Quantity = item.Count
-                };
-                // Set the order total of the shopping cart
-                orderTotal += (item.Count * item.Item.Price);
-
-                storeDB.OrderItem.Add(orderItem);
-            }
-
-            order.Total = orderTotal;
-
-            storeDB.SaveChanges();
-            EmptyCart();
-            // Return the OrderId as the confirmation number
-            return order.Id;
         }
         
         // We're using HttpContextBase to allow access to cookies.

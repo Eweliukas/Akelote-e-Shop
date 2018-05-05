@@ -1,45 +1,15 @@
 ﻿@model Akelote_e_Shop.Models.Payment
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Checkout";
 }
 
 @section Scripts
 {
     <script src="~/Scripts/jquery-1.10.2.min.js"
             type="text/javascript"></script>
-    @*
-        <script type="text/javascript">
-            $(function () {
-                $('#credit-card').submit(function () {
-                    var xhr = $.ajax({
-                        url: 'https://mock-payment-processor.appspot.com/v1/payment',
-                        method: 'POST',
-                        data: JSON.stringify({
-                            amount: parseInt($(this).find('[name=amount]').val()),
-                            number: $(this).find('[name=number]').val(),
-                            holder: $(this).find('[name=holder]').val(),
-                            exp_year: parseInt($(this).find('[name=exp_year]').val()),
-                            exp_month: parseInt($(this).find('[name=exp_month]').val()),
-                            cvv: $(this).find('[name=cvv]').val()
-                        }),
-                        contentType: 'text/plain',
-                        xhrFields: {
-                            withCredentials: true
-                        },
-                        username: 'technologines',
-                        password: 'platformos',
-                        crossDomain: true
-                    });
-                    return false;
-                });
-            });
-        </script>
-    *@
 }
 
-<h2>Checkout</h2>
-
-@using (Html.BeginForm("Pay", "Checkout"))
+@using (Html.BeginForm("Pay", "Checkout", FormMethod.Post))
 {
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <input type="hidden" name="amount" value="100" />
@@ -65,7 +35,7 @@
         <tr>
             <th>Expiry month:</th>
             <td>
-                @Html.TextBoxFor(m => m.ExpiryMonth, new { @type = "number", @min = "1", @max = "12"})
+                @Html.TextBoxFor(m => m.ExpiryMonth, new { @type = "number", @min = "1", @max = "12" })
             </td>
         </tr>
         <tr>

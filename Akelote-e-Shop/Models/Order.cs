@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -9,24 +10,19 @@ namespace Akelote_e_Shop.Models
     public class Order
     {
         public int Id { get; set; }
-        public int ApplicationUserId { get; set; }
+        public string UserId { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime Date { get; set; }
         public OrderStatus Status { get; set; }
         public string Destination { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-        [Required]
-        public int Total { get; set; }
+        [DisplayName("Order discount")]
         public int? OrderDiscount { get; set; }
         public int? Rating { get; set; }
 
-        public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string PostalCode { get; set; }
-        public string Country { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
 
@@ -34,6 +30,9 @@ namespace Akelote_e_Shop.Models
 
         public virtual ICollection<OrderItem> OrderItems { get; set; }
 
-
+        public int GetTotal()
+        {
+            return OrderItems.Select(item => item.OrderPrice * item.Quantity).Sum();
+        }
     }
 }
