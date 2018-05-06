@@ -12,14 +12,14 @@
 }
 
 @if (User.IsInRole("CanUseAdminAccess"))
-{ 
+{
     <a href="/Items/New">Add new item</a>
 }
 
 @if (!Model.Any())
 {
     <div class="no-data">
-        
+
         <i class="material-icons">cloud_off</i>
         <p>No items yet...</p>
 
@@ -28,22 +28,22 @@
 else
 {
     <div class="catalog">
-    @foreach (var item in Model)
-    {
-        <div class="catalog-item">
-            <div class="catalog-item-image">
-                <a href="/Items/Details/@item.Id"><img src="@(item.Images.Select(i => i.HyperLink).FirstOrDefault() ?? "/Content/NoImage.png")" /></a>
+        @foreach (var item in Model)
+        {
+            <div class="catalog-item">
+                <div class="catalog-item-image">
+                    <a href="/Items/Details/@item.Id"><img src="@(item.Images.Select(i => i.HyperLink).FirstOrDefault() ?? "/Content/NoImage.png")" /></a>
+                </div>
+                <div class="catalog-item-title">
+                    @Html.ActionLink(item.Title, "Details", "Items", new { id = item.Id }, null)
+                </div>
+                <div class="catalog-item-price">
+                    @item.ReadablePrice
+                </div>
+                <div class="catalog-item-add-to-cart">
+                    <a href="#" class="add-to-cart" data-id="@item.Id">Add to Cart</a>
+                </div>
             </div>
-            <div class="catalog-item-title">
-                @Html.ActionLink(item.Title, "Details", "Items", new { id = item.Id }, null)
-            </div>
-            <div class="catalog-item-price">
-                @item.ReadablePrice
-            </div>
-            <div class="catalog-item-add-to-cart">
-                <a href="#" class="add-to-cart" data-id="@item.Id">Add to Cart</a>
-            </div>
-        </div>
-    }
+        }
     </div>
 }
