@@ -197,6 +197,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201805082153151_IdentityTablesUpdated.cs" />
+    <Compile Include="Migrations\201805082153151_IdentityTablesUpdated.Designer.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -226,6 +228,10 @@
     <Compile Include="Migrations\201805052051220_UpdatedClassOrder.cs" />
     <Compile Include="Migrations\201805052051220_UpdatedClassOrder.Designer.cs">
       <DependentUpon>201805052051220_UpdatedClassOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805081556323_ItemClassUpdated.cs" />
+    <Compile Include="Migrations\201805081556323_ItemClassUpdated.Designer.cs">
+      <DependentUpon>201805081556323_ItemClassUpdated.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
@@ -271,7 +277,6 @@
       <DependentUpon>201804031714456_UpdatedCartClass.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -374,6 +379,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805082153151_IdentityTablesUpdated.resx" />
     <EmbeddedResource Include="Migrations\201803132118518_InitialModel.resx">
       <DependentUpon>201803132118518_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
@@ -409,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805052051220_UpdatedClassOrder.resx">
       <DependentUpon>201805052051220_UpdatedClassOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805081556323_ItemClassUpdated.resx">
+      <DependentUpon>201805081556323_ItemClassUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

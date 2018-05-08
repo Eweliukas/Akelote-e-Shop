@@ -18,6 +18,7 @@ namespace Akelote_e_Shop.Models
         public int Price { get; set; }
         public string Description { get; set; }
         public int? Discount { get; set; }
+        public bool Deleted { get; set; }
 
         public virtual ICollection<ItemProperty> ItemProperties { get; set; }
 

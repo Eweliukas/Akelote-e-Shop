@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Annotations;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -8,7 +11,6 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Akelote_e_Shop.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
         [Required]
@@ -35,9 +37,6 @@ namespace Akelote_e_Shop.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-
-        public DbSet<Admin> Admin { get; set; }
-        //public DbSet<User> User { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Image> Image { get; set; }
         public DbSet<Item> Item { get; set; }
@@ -47,7 +46,6 @@ namespace Akelote_e_Shop.Models
         public DbSet<ItemProperty> ItemProperty { get; set; }
         public DbSet<Cart> Cart { get; set; }
 
-
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -56,6 +54,41 @@ namespace Akelote_e_Shop.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            var user = modelBuilder.Entity<IdentityUser>().ToTable("Users");
+            user.HasMany(u => u.Roles).WithRequired().HasForeignKey(ur => ur.UserId);
+            user.Property(u => u.UserName)
+                .IsRequired()
+                .HasMaxLength(256)
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("UserNameIndex") { IsUnique = true }));
+            user.Property(u => u.Email).HasMaxLength(256);
+            user.Ignore(c => c.AccessFailedCount)
+                .Ignore(c => c.LockoutEnabled)
+                .Ignore(c => c.LockoutEndDateUtc)
+                .Ignore(c => c.EmailConfirmed)
+                .Ignore(c => c.PhoneNumberConfirmed)
+                .Ignore(c => c.SecurityStamp)
+                .Ignore(c => c.TwoFactorEnabled)
+                .Ignore(c => c.Claims)
+                .Ignore(c => c.Logins);
+
+            modelBuilder.Entity<IdentityUserRole>()
+                        .HasKey(r => new { r.UserId, r.RoleId })
+                        .ToTable("UserRoles");
+
+            var role = modelBuilder.Entity<IdentityRole>()
+                                   .ToTable("Roles");
+            role.Property(r => r.Name)
+                .IsRequired()
+                .HasMaxLength(256)
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("RoleNameIndex") { IsUnique = true }));
+            role.HasMany(r => r.Users).WithRequired().HasForeignKey(ur => ur.RoleId);
+
+            modelBuilder.Ignore<IdentityUserLogin>();
+            modelBuilder.Ignore<IdentityUserClaim>();
         }
     }
 }
