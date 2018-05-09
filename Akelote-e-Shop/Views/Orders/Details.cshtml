@@ -63,14 +63,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Rating)
+            @Html.Partial("_Rating", Model)
         </dd>
     </dl>
     <table class="table table-striped">
         <thead class="text-center thead-dark">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.OrderItems.SingleOrDefault().Item.Category.Title)
+                    @Html.DisplayNameFor(model => model.OrderItems.SingleOrDefault().Item.Category)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.OrderItems.SingleOrDefault().Item.Title)
@@ -84,7 +84,8 @@
                 <th>
                     @Html.DisplayNameFor(model => model.OrderItems.SingleOrDefault().OrderPrice)
                 </th>
-                <th></th>
+                <th>
+                </th>
             </tr>
         </thead>
         <tbody class="text-center">
@@ -92,7 +93,7 @@
             {
                 <tr>
                     <td>
-                        @Html.Label("Category")
+                        @Html.DisplayFor(modelItem => item.Item.Category.Title)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Item.Title)
@@ -118,10 +119,5 @@
     </table>
 </div>
 <p>
-    @if (User.IsInRole("CanUseAdminAccess"))
-    {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
-    }
-    <br />
     @Html.ActionLink("Back to List", "Index")
 </p>
