@@ -13,10 +13,8 @@ namespace Akelote_e_Shop.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
-        [Required]
         [StringLength(50)]
         public string LastName { get; set; }
 
@@ -28,6 +26,7 @@ namespace Akelote_e_Shop.Models
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
+            await manager.UpdateSecurityStampAsync(this.Id);
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
@@ -49,6 +48,7 @@ namespace Akelote_e_Shop.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+
         }
 
         public static ApplicationDbContext Create()
@@ -58,8 +58,14 @@ namespace Akelote_e_Shop.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            var login = modelBuilder.Entity<IdentityUserLogin>().ToTable("Logins")
+                .HasKey(l => new { l.LoginProvider, l.ProviderKey, l.UserId });
+            var claim = modelBuilder.Entity<IdentityUserClaim>().ToTable("Claims");
+
             var user = modelBuilder.Entity<IdentityUser>().ToTable("Users");
             user.HasMany(u => u.Roles).WithRequired().HasForeignKey(ur => ur.UserId);
+            user.HasMany(u => u.Logins).WithRequired().HasForeignKey(l => l.UserId);
+            user.HasMany(u => u.Claims).WithRequired().HasForeignKey(c => c.UserId);
             user.Property(u => u.UserName)
                 .IsRequired()
                 .HasMaxLength(256)
@@ -70,10 +76,7 @@ namespace Akelote_e_Shop.Models
                 .Ignore(c => c.LockoutEndDateUtc)
                 .Ignore(c => c.EmailConfirmed)
                 .Ignore(c => c.PhoneNumberConfirmed)
-                .Ignore(c => c.SecurityStamp)
-                .Ignore(c => c.TwoFactorEnabled)
-                .Ignore(c => c.Claims)
-                .Ignore(c => c.Logins);
+                .Ignore(c => c.TwoFactorEnabled);
 
             modelBuilder.Entity<IdentityUserRole>()
                         .HasKey(r => new { r.UserId, r.RoleId })
@@ -86,9 +89,6 @@ namespace Akelote_e_Shop.Models
                 .HasMaxLength(256)
                 .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("RoleNameIndex") { IsUnique = true }));
             role.HasMany(r => r.Users).WithRequired().HasForeignKey(ur => ur.RoleId);
-
-            modelBuilder.Ignore<IdentityUserLogin>();
-            modelBuilder.Ignore<IdentityUserClaim>();
         }
     }
 }
