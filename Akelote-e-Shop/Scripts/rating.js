@@ -58,10 +58,14 @@
                     link.click(function ()
                     {
                         e.val(index + 1);
-
                         setRating(e, ul);
-
                         settings.rateEnd(index + 1);
+
+                        var orderId = $(".rating").attr("data-id");
+                        $.post("/Orders/Rate/" + orderId,
+                            {
+                                "rating": e.val()
+                            });
                     });
                 });
             }

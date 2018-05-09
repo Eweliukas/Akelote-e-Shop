@@ -31,70 +31,14 @@ namespace Akelote_e_Shop.Controllers.API
             return View(model);
         }
 
-        // GET: Orders/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Orders/Create
+        // POST: Orders/Rate/5
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Rate(int id, int rating)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            _context.Order.SingleOrDefault(c => c.Id == id).Rating = rating;
+            _context.SaveChanges();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Orders/Edit/5
-        public ActionResult Edit(int id)
-        {
             return View();
-        }
-
-        // POST: Orders/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Orders/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Orders/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
