@@ -19,6 +19,7 @@
         this.each(function ()
         {
             var e = $(this);
+            var orderId = $(this).attr('data-id');
             var c = parseInt(e.attr("class").match(/rating\d+/)[0].replace('rating', ''));
 
             var ul = $('<ul class="rating"></ul>').insertAfter(e).width(c * 20 + 'px');
@@ -55,13 +56,12 @@
                         setRating(e, ul);
                     });
 
-                    var orderId = $(this).attr('data-id');
                     link.click(function ()
                     {
                         e.val(index + 1);
                         setRating(e, ul);
                         settings.rateEnd(index + 1);
-
+                        
                         $.post("/Orders/Rate/" + orderId,
                             {
                                 "rating": e.val()
