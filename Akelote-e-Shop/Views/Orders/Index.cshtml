@@ -6,6 +6,12 @@
     ViewBag.Title = "Order list";
 }
 
+<script>
+    $(function () {
+        $('.rating').rating();
+    });
+</script>
+
 <p class="text-success">@ViewBag.StatusMessage</p>
 <table class="table table-striped">
     <thead class="text-center thead-dark">
@@ -60,7 +66,7 @@
                 @Html.DisplayFor(modelItem => item.OrderDiscount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Rating)
+                @Html.Partial("_Rating", item)
             </td>
             <td>
                 @Html.ActionLink("Details", "Details", new { id = item.Id })

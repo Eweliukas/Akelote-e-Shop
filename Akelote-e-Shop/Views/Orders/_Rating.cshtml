@@ -4,12 +4,6 @@
 <script type="text/javascript" src="~/Scripts/rating.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Content/rating.css" />
 
-<script>
-    $(function () {
-        $('.rating').rating();
-    });
-
-</script>
 <div>
-    <input type="text" class="rating rating5" value="@Model.Rating" data-id="@Model.Id"/>
+    <input type="text" id="{{'rating-area' + @Model.Id}}" class="rating rating5" value="@Model.Rating" data-id="@Model.Id"/>
 </div>
