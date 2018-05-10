@@ -1,0 +1,26 @@
+@model Akelote_e_Shop.ViewModels.SubcategoryViewModel
+
+<li class="nav-item">
+    @if (Model.Children.Any())
+    {
+        <a class="nav-link expandable" href="/Items">
+            <i class="feather material-icons" onclick="$('#subcategories-@Model.Parent.Id').toggle(); return false;">add_box</i>
+            <span class="category-title">@Model.Title</span>
+        </a>
+    }
+    else
+    {
+        <a class="nav-link" href="/Items">
+            <span class="category-title">@Model.Title</span>
+        </a>
+    }
+    @if (Model.Children.Any())
+    {
+        <ul class="nav-children" style="display: none;" id="subcategories-@Model.Parent.Id">
+            @foreach (var child in Model.Children)
+            {
+                Html.RenderPartial("SublistForNavigation", child);
+            }
+        </ul>
+    }
+</li>

@@ -1,0 +1,6 @@
+@model Akelote_e_Shop.ViewModels.SubcategoryViewModel
+
+@foreach (var category in Model.Children)
+{
+    Html.RenderPartial("SublistForNavigation", category);
+}

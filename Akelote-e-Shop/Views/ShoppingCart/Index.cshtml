@@ -14,12 +14,12 @@
 </div>
 
 @{bool dataExists = Model.CartItems.Any(); }
-<div class="no-data" style="@(dataExists ? "display:none" : "display:")">
+<div class="no-data" style="@(dataExists ? "display:none;" : "")">
     <i class="material-icons">cloud_off</i>
     <p>No items yet...</p>
 </div>
 
-<table class="table table-striped data-view" style="@(dataExists ? "display:" : "display:none")">
+<table class="table table-striped data-view" style="@(dataExists ? "" : "display:none;")">
     <thead class="text-center thead-dark">
         <tr>
             <th>Item</th>
@@ -45,7 +45,7 @@
 
                 <td>
                     <a href="#" class="RemoveLink"
-                        data-id="@item.RecordId">
+                       data-id="@item.RecordId">
                         Remove
                         from cart
                     </a>
@@ -55,4 +55,4 @@
     </tbody>
 </table>
 
-@Html.ActionLink("Checkout", "Index", "OrderInfo", null, new { @style=(dataExists ? "display:" : "display:none"), @class = "btn btn-secondary float-right data-view" })
+@Html.ActionLink("Checkout", "Index", "OrderInfo", null, new { @style = (dataExists ? "" : "display:none;"), @class = "btn btn-secondary float-right data-view" })

@@ -197,6 +197,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Migrations\201805082153151_IdentityTablesUpdated.cs" />
     <Compile Include="Migrations\201805082153151_IdentityTablesUpdated.Designer.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -301,6 +302,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
+    <Compile Include="ViewModels\SubcategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-Akelote-e-Shop-20180313072122.mdf" />
@@ -373,6 +375,8 @@
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\OrderInfo\Index.cshtml" />
     <Content Include="Views\Orders\_Rating.cshtml" />
+    <Content Include="Views\Categories\ListForNavigation.cshtml" />
+    <Content Include="Views\Categories\SublistForNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\User\" />

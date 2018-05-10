@@ -2,7 +2,6 @@
     font-size: .875rem;
 }
 
-
 .sidebar {
     height: calc(100vh - 60px);
     padding: 0;
@@ -29,17 +28,48 @@
 }
 
 .nav-link i {
-    font-size: 20px;
+    font-size: 15px;
+    margin-right: 3px;
     vertical-align: bottom;
-    margin-right: 10px;
+    padding-bottom: 2px;
+    display: block;
+    float: left;
 }
 
-    .sidebar .nav-link.active {
-        color: #007bff;
-    }
+.nav-link .category-title {
+    display: block;
+    float: left;
+}
+
+.sidebar .nav-link.active {
+    color: #007bff;
+}
 
 .sidebar-heading {
     font-size: .75rem;
     text-transform: uppercase;
 }
 
+.nav-children {
+    list-style-type: none;
+    margin-left: 10px;
+    padding-left: 0;
+}
+
+ul.nav li {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.nav-link {
+    padding-top: 5px;
+    padding-bottom: 0;
+}
+
+.nav-link.expandable {
+    margin-left: -22px;
+}
+
+ul.nav {
+    margin-left: 15px;
+}

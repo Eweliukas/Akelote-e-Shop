@@ -1,6 +1,6 @@
 ﻿@section Scripts
 {
-    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
 }
 
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -8,22 +8,13 @@
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Sales</span>
         </h6>
-        @if (Request.IsAuthenticated) {
+        @if (Request.IsAuthenticated)
+        {
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link" href="/ShoppingCart">
                     <i class="feather material-icons">shopping_cart</i>
                     My cart  (<span id="num-items-in-cart">@Akelote_e_Shop.Models.ShoppingCart.GetCart(Context).GetCount()</span>)
-                </a>
-            </li>
-        </ul>
-        <hr />
-        }
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link" href="/Items">
-                    <i class="feather material-icons">folder</i>
-                    Products
                 </a>
             </li>
             <li class="nav-item">
@@ -32,18 +23,11 @@
                     Orders
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/items">
-                    <i class="feather material-icons">alarm</i>
-                    History
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/items">
-                    <i class="feather material-icons">bookmark</i>
-                    Bookmarks
-                </a>
-            </li>
+        </ul>
+        <hr />
+        }
+        <ul class="nav flex-column">
+            @Html.Action("ListForNavigation", "Categories")
         </ul>
     </div>
 </nav>
