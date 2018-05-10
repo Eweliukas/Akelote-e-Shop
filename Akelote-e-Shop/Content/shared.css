@@ -12,12 +12,12 @@
     color: #a9a9a9;
 }
 
-    .no-data p {
-        text-align: center;
-        font-size: 1.2em;
-        color: #a9a9a9;
-    }
+.no-data p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #a9a9a9;
+}
 
-    .container-fluid {
-        position: relative;
-    }
+.container-fluid {
+    position: relative;
+}
