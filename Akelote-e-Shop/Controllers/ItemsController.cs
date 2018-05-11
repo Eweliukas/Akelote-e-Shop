@@ -69,11 +69,30 @@ namespace Akelote_e_Shop.Controllers
             return RedirectToAction("Index", "items");
         }
 
-        public ViewResult Index()
+        public ActionResult Index(int? categoryId = null)
         {
-            var items = _context.Item.ToList();  
+            IEnumerable<Item> items = _context.Item;
+            var categories = _context.Category.ToList();
+            IEnumerable<Category> categoryAndAncestors = new Category[] { };
+            if (categoryId != null)
+            {
+                var pivot = categories.SingleOrDefault(c => c.Id == categoryId);
 
-            return View(items);
+                if (pivot == null)
+                    return HttpNotFound();
+
+                var categoryAndDescendants = pivot.Descendants(categories).Union(new[] { pivot });
+
+                items = items.Where(i => categoryAndDescendants.Select(c => c.Id).Contains(i.CategoryId));
+
+                categoryAndAncestors = pivot.Ancestors(categories).Union(new[] { pivot });
+            }
+            items = items.ToList();
+            return View(new ItemListViewModel
+            {
+                Items = items,
+                CategoryAndAncestors = categoryAndAncestors
+            });
         }
 
 

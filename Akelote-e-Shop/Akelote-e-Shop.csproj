@@ -300,6 +300,7 @@
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ItemListViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
     <Compile Include="ViewModels\SubcategoryViewModel.cs" />
@@ -395,7 +396,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805082153151_IdentityTablesUpdated.resx" />
     <EmbeddedResource Include="Migrations\201803132118518_InitialModel.resx">
       <DependentUpon>201803132118518_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
@@ -434,6 +434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805081556323_ItemClassUpdated.resx">
       <DependentUpon>201805081556323_ItemClassUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805082153151_IdentityTablesUpdated.resx">
+      <DependentUpon>201805082153151_IdentityTablesUpdated.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805090321193_IdentityTablesUpdated.resx">
       <DependentUpon>201805090321193_IdentityTablesUpdated.cs</DependentUpon>

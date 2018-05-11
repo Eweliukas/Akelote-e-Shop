@@ -16,5 +16,34 @@ namespace Akelote_e_Shop.Models
 
         public virtual ICollection<Property> Properties { get; set; }
 
+        public IEnumerable<Category> Ancestors(IEnumerable<Category> all)
+        {
+            var currentId = ParentId;
+            while (currentId != null)
+            {
+                var current = all.SingleOrDefault(c => c.Id == currentId);
+                currentId = null;
+                if (current != null)
+                {
+                    yield return current;
+                    currentId = current.ParentId;
+                }
+            }
+        }
+
+        public IEnumerable<Category> Descendants(IEnumerable<Category> all)
+        {
+            foreach (var category in all)
+            {
+                if (category.ParentId == Id)
+                {
+                    yield return category;
+                    foreach (var descendant in category.Descendants(all))
+                    {
+                        yield return descendant;
+                    }
+                }
+            }
+        }
     }
 }

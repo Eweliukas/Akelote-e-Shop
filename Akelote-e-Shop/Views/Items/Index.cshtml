@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Akelote_e_Shop.Models.Item>
+﻿@model Akelote_e_Shop.ViewModels.ItemListViewModel
 
 @{
     ViewBag.Title = "Items";
@@ -9,6 +9,25 @@
 {
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/add-to-cart.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var categories = [@string.Join(", ", Model.CategoryAndAncestors.Select(c => c.Id))];
+            $.each(categories, function (k) {
+                $('#subcategories-' + categories[k]).show();
+                $('.category-expander[data-category=' + categories[k] + ']').text('indeterminate_check_box');
+            });
+
+            $('.category-expander').click(function () {
+                var id = $(this).data('category');
+                $('#subcategories-' + id).toggle();
+                if ($(this).text() == 'add_box') {
+                    $(this).text('indeterminate_check_box');
+                } else {
+                    $(this).text('add_box');
+                }
+            });;
+        });
+    </script>
 }
 
 @if (User.IsInRole("CanUseAdminAccess"))
@@ -16,7 +35,7 @@
     <a href="/Items/New">Add new item</a>
 }
 
-@if (!Model.Any())
+@if (!Model.Items.Any())
 {
     <div class="no-data">
 
@@ -28,7 +47,7 @@
 else
 {
     <div class="catalog">
-        @foreach (var item in Model)
+        @foreach (var item in Model.Items)
         {
             <div class="catalog-item">
                 <div class="catalog-item-image">

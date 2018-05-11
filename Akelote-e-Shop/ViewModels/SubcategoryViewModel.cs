@@ -11,11 +11,19 @@ namespace Akelote_e_Shop.ViewModels
         public IEnumerable<Category> AllCategories { get; set; }
         public Category Parent { get; set; }
 
+        public int? Id
+        {
+            get
+            {
+                return Parent?.Id;
+            }
+        }
+
         public string Title
         {
             get
             {
-                return Parent.Title;
+                return Parent?.Title;
             }
         }
         public IEnumerable<SubcategoryViewModel> Children
