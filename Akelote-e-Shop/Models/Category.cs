@@ -41,5 +41,17 @@ namespace Akelote_e_Shop.Models
 
             return descedants;
         }
+
+        public IEnumerable<Property> GetAllProperties()
+        {
+            var properties = new List<Property>(Properties);
+
+            foreach(var category in Ancestors())
+            {
+                properties.AddRange(category.Properties);
+            }
+
+            return properties;
+        }
     }
 }
