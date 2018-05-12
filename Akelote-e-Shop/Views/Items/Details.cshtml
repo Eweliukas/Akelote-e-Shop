@@ -48,6 +48,31 @@
 
     </dl>
 </div>
+<div>
+    <table class="table table-striped">
+        <tbody class="text-center">
+            @foreach (var property in Model.Category.GetAllProperties())
+            {
+                <tr>
+                    <td>
+                        @Html.Label(property.Name)
+                    </td>
+                    <td>
+                        @{
+                            var itemProperty = Model.ItemProperties
+                                .SingleOrDefault(p => p.PropertyId == property.Id);
+                        }
+
+                        @if (itemProperty != null)
+                        {
+                            @Html.Label(itemProperty.PropertyValue);
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
