@@ -30,11 +30,6 @@
     </script>
 }
 
-@if (User.IsInRole("CanUseAdminAccess"))
-{
-    <a href="/Items/New">Add new item</a>
-}
-
 @if (!Model.Items.Any())
 {
     <div class="no-data">

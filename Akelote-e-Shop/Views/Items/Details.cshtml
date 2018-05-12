@@ -49,10 +49,5 @@
     </dl>
 </div>
 <p>
-    @if (User.IsInRole("CanUseAdminAccess"))
-    {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
-    }
-    <br />
     @Html.ActionLink("Back to List", "Index")
 </p>
