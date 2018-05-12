@@ -242,6 +242,10 @@
     <Compile Include="Migrations\201805090332066_IdentityTablesUpdated.Designer.cs">
       <DependentUpon>201805090332066_IdentityTablesUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805120411366_CategoryClassUpdated.cs" />
+    <Compile Include="Migrations\201805120411366_CategoryClassUpdated.Designer.cs">
+      <DependentUpon>201805120411366_CategoryClassUpdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -443,6 +447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805090332066_IdentityTablesUpdated.resx">
       <DependentUpon>201805090332066_IdentityTablesUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805120411366_CategoryClassUpdated.resx">
+      <DependentUpon>201805120411366_CategoryClassUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

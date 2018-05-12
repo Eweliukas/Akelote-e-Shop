@@ -12,38 +12,34 @@ namespace Akelote_e_Shop.Models
         public int? ParentId { get; set; }
         public int? Discount { get; set; }
 
-        public virtual ICollection<Item> Items { get; set; }
+        public virtual Category Parent { get; set; }
+        public virtual ICollection<Category> Children { get; set; }
 
+        public virtual ICollection<Item> Items { get; set; }
         public virtual ICollection<Property> Properties { get; set; }
 
-        public IEnumerable<Category> Ancestors(IEnumerable<Category> all)
+        public IEnumerable<Category> Ancestors()
         {
-            var currentId = ParentId;
-            while (currentId != null)
+            var category = Parent;
+            while (category != null)
             {
-                var current = all.SingleOrDefault(c => c.Id == currentId);
-                currentId = null;
-                if (current != null)
-                {
-                    yield return current;
-                    currentId = current.ParentId;
-                }
+                yield return category;
+                category = category.Parent;
             }
         }
 
-        public IEnumerable<Category> Descendants(IEnumerable<Category> all)
+        public IEnumerable<Category> Descendants()
         {
-            foreach (var category in all)
-            {
-                if (category.ParentId == Id)
-                {
-                    yield return category;
-                    foreach (var descendant in category.Descendants(all))
-                    {
-                        yield return descendant;
-                    }
-                }
-            }
+            if (Children == null)
+                return null;
+
+            var descedants = new List<Category>(Children);
+
+            foreach (var childDescedants in Children.Select(c => c.Descendants())) {
+                descedants.AddRange(childDescedants);
+            };
+
+            return descedants;
         }
     }
 }

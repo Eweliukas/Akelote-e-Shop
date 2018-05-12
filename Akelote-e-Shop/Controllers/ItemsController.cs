@@ -61,7 +61,6 @@ namespace Akelote_e_Shop.Controllers
                 itemInDb.CategoryId = item.CategoryId;
                 itemInDb.Description = item.Description;
                 itemInDb.Discount = item.Discount;
-
             }
 
             _context.SaveChanges();
@@ -72,20 +71,19 @@ namespace Akelote_e_Shop.Controllers
         public ActionResult Index(int? categoryId = null)
         {
             IEnumerable<Item> items = _context.Item;
-            var categories = _context.Category.ToList();
             IEnumerable<Category> categoryAndAncestors = new Category[] { };
             if (categoryId != null)
             {
-                var pivot = categories.SingleOrDefault(c => c.Id == categoryId);
+                var pivot = _context.Category.ToList().SingleOrDefault(c => c.Id == categoryId);
 
                 if (pivot == null)
                     return HttpNotFound();
 
-                var categoryAndDescendants = pivot.Descendants(categories).Union(new[] { pivot });
+                var categoryAndDescendants = pivot.Descendants().Union(new[] { pivot });
 
                 items = items.Where(i => categoryAndDescendants.Select(c => c.Id).Contains(i.CategoryId));
 
-                categoryAndAncestors = pivot.Ancestors(categories).Union(new[] { pivot });
+                categoryAndAncestors = pivot.Ancestors().Union(new[] { pivot });
             }
             items = items.ToList();
             return View(new ItemListViewModel
@@ -94,8 +92,6 @@ namespace Akelote_e_Shop.Controllers
                 CategoryAndAncestors = categoryAndAncestors
             });
         }
-
-
 
         public ActionResult Edit(int id)
         {
