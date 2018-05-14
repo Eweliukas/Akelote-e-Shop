@@ -28,7 +28,7 @@
     text-transform: uppercase;
 }
 
-.sidebar .nav-link a {
+.sidebar a {
     font-weight: 500;
     color: #333;
 }
