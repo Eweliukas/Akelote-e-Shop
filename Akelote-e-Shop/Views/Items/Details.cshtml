@@ -4,50 +4,79 @@
     ViewBag.Title = "Item details";
 }
 
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
+<style type="text/css">
+    .item-details {
+        overflow: auto;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoryId)
-        </dd>
+    .item-details-image, .item-details-main {
+        float: left;
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+    .item-details-main {
+        margin-left: 30px;
+    }
+</style>
+<div class="item-details">
+    @if (Model.Images.Any())
+    {
+        <div class="item-details-image">
+        @foreach (var image in Model.Images)
+        {
+            <img alt="@image.Caption" src="~/Content/@image.HyperLink" />
+            @* TODO: display other images as a carousel *@
+            break;
+        }
+        </div>
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+    <div class="item-details-main">
+        <dl class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CategoryId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Discount)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Discount)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ReadablePrice)
+            </dd>
 
-    </dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Discount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Discount)
+            </dd>
+
+        </dl>
+    </div>
 </div>
+
 <div>
     <table class="table table-striped">
         <tbody class="text-center">
