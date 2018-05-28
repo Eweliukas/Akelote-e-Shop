@@ -1,0 +1,89 @@
+﻿@model Akelote_e_Shop.Models.Category
+
+@{
+    ViewBag.Title = "Category details";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @Model.Title
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>@Html.ActionLink("Create", "Create")</li>
+                            <li>@Html.ActionLink("Edit", "Edit", new {id = Model.Id})</li>
+                            <li>@Html.ActionLink("Delete", "Delete", new {id = Model.Id})</li>
+                            <li>@Html.ActionLink("Back to List", "List", new { page = 1 }, null)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <strong>Id</strong><br/>@Model.Id
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+
+                        <strong>Parent</strong>
+
+                        <br/>
+
+                        @if (Model.Parent != null) {
+                            @Model.Parent.Title
+                        }
+                        else {
+                            <p>-</p>
+                        }
+
+
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <strong>Children count</strong>
+
+                        <br/>
+
+                        @Model.Children.Count
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+
+                        <strong>Discount</strong>
+
+                        <br/>
+
+                        @if (Model.Discount != null) {
+                            @Model.Discount
+                        }
+                        else {
+                            <p>-</p>
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

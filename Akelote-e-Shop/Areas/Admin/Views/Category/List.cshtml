@@ -1,0 +1,54 @@
+﻿@model Akelote_e_Shop.Areas.Admin.ViewModels.CategoryListViewModel
+
+@{
+    ViewBag.Title = "Categories";
+    ViewBag.Link = Html.ActionLink("Create New", "Create", new { @class = "btn btn-sm btn-primary" });
+}
+
+<table class="table table-striped">
+
+    <thead class="thead-dark">
+
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Parent
+        </th>
+        <th>
+            Discount
+        </th>
+        <th>Actions</th>
+    </tr>
+
+    </thead>
+
+
+
+    @foreach (var item in Model.Categories) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+            </td>
+        </tr>
+    }
+
+</table>

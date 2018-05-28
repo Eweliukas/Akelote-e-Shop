@@ -197,6 +197,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CategoryFormViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CategoryListViewModel.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Migrations\201805082153151_IdentityTablesUpdated.cs" />
     <Compile Include="Migrations\201805082153151_IdentityTablesUpdated.Designer.cs" />
@@ -310,10 +314,12 @@
     <Compile Include="ViewModels\SubcategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-Akelote-e-Shop-20180313072122.mdf" />
-    <Content Include="App_Data\aspnet-Akelote-e-Shop-20180313072122_log.ldf">
-      <DependentUpon>aspnet-Akelote-e-Shop-20180313072122.mdf</DependentUpon>
-    </Content>
+    <Content Include="Areas\Admin\Content\admin-table.css" />
+    <Content Include="Areas\Admin\Content\bootstrap-lumen.css" />
+    <Content Include="Areas\Admin\Content\bootstrap.css" />
+    <Content Include="Areas\Admin\Content\bootstrap.min.css" />
+    <Content Include="Areas\Admin\Content\navigation.css" />
+    <Content Include="Areas\Admin\Content\shared.css" />
     <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -330,6 +336,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -384,6 +398,8 @@
     <Content Include="Views\Categories\SublistForNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

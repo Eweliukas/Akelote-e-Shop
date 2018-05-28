@@ -1,0 +1,66 @@
+﻿.no-data {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+}
+
+    .no-data i {
+        font-size: 125px;
+        color: #a9a9a9;
+    }
+
+    .no-data p {
+        text-align: center;
+        font-size: 1.2em;
+        color: #a9a9a9;
+    }
+
+.container-fluid {
+    position: relative;
+}
+
+.h2 {
+    font-size: 27px !important;
+}
+
+.table{
+    box-shadow: none;
+    font-size: 13px;
+    margin: 0 !important;
+}
+
+.table thead{
+    font-size: 0.9em;
+}
+
+.table td{
+    vertical-align: middle !important;
+    padding: 0.6em !important;
+    text-align: center;
+}
+
+label {
+    padding: 0 !important;
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.table th{
+    text-align: center;
+}
+
+.h2 {
+    font-size: 25px !important;
+}
+
+.table td i{
+    font-size: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #E00000;
+}
