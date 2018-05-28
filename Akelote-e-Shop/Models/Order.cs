@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Akelote_e_Shop.Models
 {
-    public class Order
+    public class Order : IIdentifiable
     {
         public int Id { get; set; }
         public string UserId { get; set; }

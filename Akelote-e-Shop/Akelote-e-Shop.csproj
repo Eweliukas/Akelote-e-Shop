@@ -197,6 +197,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Admin\OrdersAdminController.cs" />
+    <Compile Include="Controllers\Admin\ImagesAdminController.cs" />
+    <Compile Include="Controllers\Admin\ItemsAdminController.cs" />
+    <Compile Include="Union.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Admin\CategoriesAdminController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Migrations\201805082153151_IdentityTablesUpdated.cs" />
     <Compile Include="Migrations\201805082153151_IdentityTablesUpdated.Designer.cs" />
@@ -246,6 +252,7 @@
     <Compile Include="Migrations\201805120411366_CategoryClassUpdated.Designer.cs">
       <DependentUpon>201805120411366_CategoryClassUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -382,6 +389,9 @@
     <Content Include="Views\Orders\_Rating.cshtml" />
     <Content Include="Views\Categories\ListForNavigation.cshtml" />
     <Content Include="Views\Categories\SublistForNavigation.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\User\" />

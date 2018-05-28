@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Dictionary<string, Union>>
+
+@{
+    ViewBag.Title = "Index";
+    var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+}
+
+@if (Model.Any())
+{
+    <table class="admin-index">
+        <tr>
+            @foreach (var key in Model.First().Keys)
+            {
+                <th>@key</th>
+            }
+        </tr>
+
+        @foreach (var dictionary in Model)
+        {
+            <tr>
+                @foreach (var value in dictionary.Values)
+                {
+                    <td>@value.StringValue</td>
+                }
+                <td class="admin-index-action admin-index-edit-action">
+                    <a href="@Url.Action("Edit", controller, new { Id = dictionary["Id"].IntValue })"><i class="material-icons">edit</i></a>
+                </td>
+                <td class="admin-index-action admin-index-delete-action">
+                    <a href="@Url.Action("Delete", controller, new { Id = dictionary["Id"].IntValue })"><i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+        }
+    </table>
+}

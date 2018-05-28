@@ -1,0 +1,22 @@
+﻿@model Dictionary<string, Union>
+
+@{
+    ViewBag.Title = "Edit";
+    var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+}
+
+@* TODO CSRF protection *@
+<form action="@Url.Action("Save", controller)" method="post">
+    <table class="admin-edit">
+        @foreach (var key in Model.Keys)
+        {
+            <tr>
+                <th>@key</th>
+                <td>
+                    <input name="@key" value="@Model[key].StringValue" />
+                </td>
+            </tr>
+        }
+    </table>
+    <input type="submit" />
+</form>

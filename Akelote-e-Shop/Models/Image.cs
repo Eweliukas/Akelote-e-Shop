@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Akelote_e_Shop.Models
 {
-    public class Image
+    public class Image : IIdentifiable
     {
         public int Id { get; set; }
         public int ItemId { get; set; }

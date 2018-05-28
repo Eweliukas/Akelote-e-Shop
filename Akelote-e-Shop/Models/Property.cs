@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Akelote_e_Shop.Models
 {
-    public class Property
+    public class Property : IIdentifiable
     {
         public int Id { get; set; }
 

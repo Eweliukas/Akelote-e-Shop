@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Akelote_e_Shop.Models
 {
-    public class Category
+    public class Category : IIdentifiable
     {
         public int Id { get; set; }
         public string Title { get; set; }

@@ -1,0 +1,21 @@
+﻿@model Akelote_e_Shop.Models.IIdentifiable
+
+@{
+    ViewBag.Title = "Delete";
+    var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+}
+
+<p>Would you really like to delete this entry?</p>
+
+@* TODO CSRF protection (?) *@
+<form style="display: inline;" action="@Url.Action("PerformDeletion", controller, new { Id = Model.Id })" method="post">
+    <input type="submit" value="Yes" />
+</form>
+
+<a href="javascript:history.back();" id="do-not-confirm">
+    <button>No</button>
+</a>
+
+<script>
+    $('#do-not-confirm').focus();
+</script>
