@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace Akelote_e_Shop.Areas.Admin
+namespace Akelote_e_Shop.Areas.Test
 {
-    public class AdminAreaRegistration : AreaRegistration 
+    public class TestAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "Admin";
+                return "Test";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Admin_default",
-                "admin/{controller}/{action}/{id}",
+                "Test_default",
+                "Test/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

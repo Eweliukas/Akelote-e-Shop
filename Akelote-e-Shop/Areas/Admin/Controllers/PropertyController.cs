@@ -10,108 +10,112 @@ using Akelote_e_Shop.Models;
 
 namespace Akelote_e_Shop.Areas.Admin.Controllers
 {
-    public class CategoryController : Controller
+    public class PropertyController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Admin/Category
+        // GET: Admin/Property
         public ActionResult Index()
         {
-            var category = db.Category.Include(c => c.Parent);
-            return View(category.ToList());
+            var property = db.Property.Include(p => p.Category);
+            return View(property.ToList());
         }
 
-        // GET: Admin/Category/Details/5
+        // GET: Admin/Property/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Category.Find(id);
-            if (category == null)
+            Property property = db.Property.Find(id);
+            if (property == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(property);
         }
 
-        // GET: Admin/Category/Create
+        // GET: Admin/Property/Create
         public ActionResult Create()
         {
-            ViewBag.ParentId = new SelectList(db.Category, "Id", "Title");
+            ViewBag.CategoryId = new SelectList(db.Category, "Id", "Title");
             return View();
         }
 
-        // POST: Admin/Category/Create
+        // POST: Admin/Property/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,ParentId,Discount")] Category category)
+        public ActionResult Create([Bind(Include = "Id,Name,CategoryId")] Property property)
         {
             if (ModelState.IsValid)
             {
-                db.Category.Add(category);
+                db.Property.Add(property);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ParentId = new SelectList(db.Category, "Id", "Title", category.ParentId);
-            return View(category);
+            ViewBag.CategoryId = new SelectList(db.Category, "Id", "Title", property.CategoryId);
+            return View(property);
         }
 
-        // GET: Admin/Category/Edit/5
+        // GET: Admin/Property/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Category.Find(id);
-            if (category == null)
+            Property property = db.Property.Find(id);
+            if (property == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ParentId = new SelectList(db.Category, "Id", "Title", category.ParentId);
-            return View(category);
+            ViewBag.CategoryId = new SelectList(db.Category, "Id", "Title", property.CategoryId);
+            return View(property);
         }
 
-        // POST: Admin/Category/Edit/5
+        // POST: Admin/Property/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,ParentId,Discount")] Category category)
+        public ActionResult Edit([Bind(Include = "Id,Name,CategoryId")] Property property)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
+                db.Entry(property).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ParentId = new SelectList(db.Category, "Id", "Title", category.ParentId);
-            return View(category);
+            ViewBag.CategoryId = new SelectList(db.Category, "Id", "Title", property.CategoryId);
+            return View(property);
         }
 
-        // GET: Admin/Category/Delete/5
+        // GET: Admin/Property/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Category.Find(id);
-            if (category == null)
+            Property property = db.Property.Find(id);
+            if (property == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(property);
         }
 
-        // POST: Admin/Category/Delete/5
+        // POST: Admin/Property/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Category.Find(id);
-            db.Category.Remove(category);
+            Property property = db.Property.Find(id);
+            db.Property.Remove(property);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

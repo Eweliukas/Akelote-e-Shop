@@ -199,8 +199,9 @@
   <ItemGroup>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
-    <Compile Include="Areas\Admin\ViewModels\CategoryFormViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\CategoryListViewModel.cs" />
+    <Compile Include="Areas\Admin\Controllers\ItemController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PropertyController.cs" />
+    <Compile Include="Areas\Test\TestAreaRegistration.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Migrations\201805082153151_IdentityTablesUpdated.cs" />
     <Compile Include="Migrations\201805082153151_IdentityTablesUpdated.Designer.cs" />
@@ -336,14 +337,26 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\List.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Sidebar.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Item\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Item\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Item\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Item\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Item\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Property\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Property\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Property\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Property\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Property\Index.cshtml" />
+    <Content Include="Areas\Test\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -400,6 +413,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Test\Controllers\" />
+    <Folder Include="Areas\Test\Models\" />
+    <Folder Include="Areas\Test\Views\Shared\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

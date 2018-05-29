@@ -64,3 +64,18 @@ label {
     cursor: pointer;
     color: #E00000;
 }
+
+.row label{
+    display: block;
+    line-height: 20px;
+    color:#a9a9a9;
+    height: 20px;
+    background-color: white;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.row {
+    margin-bottom: 10px;
+}
