@@ -15,10 +15,13 @@ namespace Akelote_e_Shop.Models
         public string Title { get; set; }
         [Required]
 
+        [Range(0 , int.MaxValue, ErrorMessage = "The value must be greater than 0")]
         public int Price { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+
+        [Range(0, 100, ErrorMessage = "The value must be between 0 and 100")]
         public int? Discount { get; set; }
         public bool Deleted { get; set; }
 
