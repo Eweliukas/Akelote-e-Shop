@@ -204,6 +204,7 @@
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\PropertyController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Dtos\PropertyDto.cs" />
     <Compile Include="Areas\Admin\Services\DI\ImportExportService.cs" />
     <Compile Include="Areas\Admin\Services\ExcelImportExportService.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
@@ -323,6 +324,7 @@
     <Content Include="Areas\Admin\Content\bootstrap-lumen.css" />
     <Content Include="Areas\Admin\Content\bootstrap.css" />
     <Content Include="Areas\Admin\Content\bootstrap.min.css" />
+    <Content Include="Areas\Admin\Content\item-create.js" />
     <Content Include="Areas\Admin\Content\navigation.css" />
     <Content Include="Areas\Admin\Content\shared.css" />
     <Content Include="Content\bootstrap-lumen.css" />
@@ -369,6 +371,7 @@
     <Content Include="Areas\Admin\Views\User\Block.cshtml" />
     <Content Include="Areas\Admin\Views\User\Unblock.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Cancel.cshtml" />
+    <Content Include="Areas\Admin\Views\Item\ItemProperties.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -424,7 +427,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Properties\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

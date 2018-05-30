@@ -22,6 +22,11 @@
     position: relative;
 }
 
+textarea {
+    resize: none;
+    height: 150px;
+}
+
 .h2 {
     font-size: 27px !important;
 }

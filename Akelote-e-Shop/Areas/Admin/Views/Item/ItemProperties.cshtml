@@ -1,0 +1,18 @@
+﻿@using System.Drawing.Imaging
+@using Akelote_e_Shop.Models
+@model Item
+
+@{
+    ViewBag.Title = "Item properties";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    foreach (ItemProperty itemProperty in Model.ItemProperties) {
+        @Html.Label(itemProperty.Property.Name);
+    }
+
+   
+
+}
