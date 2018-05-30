@@ -16,7 +16,8 @@
     <script type="text/javascript" src="~/Areas/Admin/Content/item-create.js"></script>
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
