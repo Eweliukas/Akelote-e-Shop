@@ -4,31 +4,28 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+@section actions
+{
+    <div>
+        @Html.ActionLink("Edit", "Edit", "Property", new { id = Model.Id }, new { @class = "btn btn-sm btn-primary ml-2" })
+        @Html.ActionLink("Back to list", "Index", "Property", null, new { @class = "btn btn-sm btn-secondary" })
+    </div>
+
+}
 
 <div>
-    <h4>Property</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.Title)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.Title)
-        </dd>
+    <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+        <div class="col-6">
+            <label>Name</label>
+            <strong> @Html.DisplayNameFor(model => model.Name)</strong>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+        <div class="col-6">
+            <label>Category</label>
+            <strong>@Html.DisplayNameFor(model => model.Category.Title)</strong>
+        </div>
 
-    </dl>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
