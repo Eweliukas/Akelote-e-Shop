@@ -1,105 +1,119 @@
 ﻿@model Akelote_e_Shop.Models.Order
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Order details";
 }
 
-<h2>Details</h2>
+@section actions
+{
+    <div>
+        @Html.ActionLink("Complete", "Complete", "Order", new { id = Model.Id }, new { @class = "btn btn-sm btn-primary ml-2" })
+        @Html.ActionLink("Back to list", "Index", "Order", null, new { @class = "btn btn-sm btn-secondary" })
+    </div>
+
+}
 
 <div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.User.Email)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.Email)
-        </dd>
+    <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
+        <div class="col-6">
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
+            <label>User email</label>
+            <strong> @Html.DisplayFor(model => model.User.Email)</strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+        <div class="col-6">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Destination)
-        </dt>
+            <label>Date</label>
+            <strong>@Html.DisplayFor(model => model.Date)</strong>
 
-        <dd>
-            @Html.DisplayFor(model => model.Destination)
-        </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+    <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderDiscount)
-        </dt>
+        <div class="col-6">
 
-        <dd>
-            @Html.DisplayFor(model => model.OrderDiscount)
-        </dd>
+            <label>Status</label>
+            <strong>@Html.DisplayFor(model => model.Status)</strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
+        <div class="col-6">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+            <label>Destination</label>
+            <strong>@Html.DisplayFor(model => model.Destination)</strong>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+    <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
+        <div class="col-6">
 
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
+            <label>Order discount</label>
+            <strong>@Html.DisplayFor(model => model.OrderDiscount)</strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+        <div class="col-6">
 
-    </dl>
+            <label>Rating</label>
+            <strong>@Html.DisplayFor(model => model.Rating)</strong>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-6">
+
+            <label>First name</label>
+            <strong>@Html.DisplayFor(model => model.FirstName)</strong>
+
+        </div>
+
+        <div class="col-6">
+
+            <label>Last name</label>
+            <strong>@Html.DisplayFor(model => model.LastName)</strong>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-6">
+
+            <label>Phone</label>
+            <strong>@Html.DisplayFor(model => model.Phone)</strong>
+
+        </div>
+
+        <div class="col-6">
+
+            <label>Email</label>
+            <strong>@Html.DisplayFor(model => model.Email)</strong>
+
+        </div>
+
+    </div>
+    
+    <div class="row">
+        
+        <div class="col-6">
+
+            <label>Description</label>
+            <strong>@Html.DisplayFor(model => model.Description)</strong>
+
+        </div>
+
+    </div>
+
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>

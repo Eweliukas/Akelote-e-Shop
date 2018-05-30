@@ -1,0 +1,17 @@
+﻿@model Akelote_e_Shop.Models.Order
+
+@{
+    ViewBag.Title = "Complete order";
+}
+
+<h3 class="text-center">Are you sure you want to complete this order?</h3>
+<br />
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color text-center">
+        <input type="submit" value="Put" class="btn btn-danger" />
+        @Html.ActionLink("Cancel", "Index", "Order", new { id = Model.Id }, new { @class = "btn btn-secondary" })
+    </div>
+}
