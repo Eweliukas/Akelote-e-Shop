@@ -6,23 +6,28 @@
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Entities</span>
+        </h6>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "Category")" class="nav-link"><i class="feather material-icons">label</i>Categories</a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "Property")" class="nav-link"><i class="feather material-icons">style</i>Properties</a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "Item")" class="nav-link"><i class="feather material-icons">store</i>Items</a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "User")" class="nav-link"><i class="feather material-icons">person</i>Users</a>
+            </li>
+        </ul>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Sales</span>
         </h6>
         <ul class="nav flex-column">
             <li class="nav-item">
-                @Html.ActionLink("Categories", "Index", "Category")
-            </li>
-            <li class="nav-item">
-                @Html.ActionLink("Properties", "Index", "Property")
-            </li>
-            <li class="nav-item">
-                @Html.ActionLink("Items", "Index", "Item")
-            </li>
-            <li class="nav-item">
-                @Html.ActionLink("Orders", "Index", "Order")
-            </li>
-            <li class="nav-item">
-                @Html.ActionLink("Users", "Index", "User")
+                <a href="@Url.Action("Index", "Order")" class="nav-link"><i class="feather material-icons">assignment</i>Orders</a>
             </li>
         </ul>
     </div>
