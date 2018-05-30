@@ -6,13 +6,20 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Akelote_e_Shop.Areas.Admin.Services;
+using Akelote_e_Shop.Areas.Admin.Services.DI;
 using Akelote_e_Shop.Models;
 
 namespace Akelote_e_Shop.Areas.Admin.Controllers
 {
     public class PropertyController : Controller
     {
+        private readonly ImportExportService _importExportService;
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        public PropertyController() {
+            _importExportService = new ExcelImportExportService();
+        }
 
         // GET: Admin/Property
         public ActionResult Index()
@@ -127,6 +134,11 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // GET: Admin/Property/Export
+        public void Export() {
+            _importExportService.Export(db.Property.ToList(), "Properties");
         }
     }
 }

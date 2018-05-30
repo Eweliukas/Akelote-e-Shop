@@ -4,6 +4,14 @@
     ViewBag.Title = "Orders list";
 }
 
+@section actions
+{
+    <div>
+        @Html.ActionLink("Export Excel", "Export", "Order", null, new { @class = "btn btn-sm btn-secondary" })
+    </div>
+
+}
+
 <table class="table table-striped">
 
     <thead class="thead-dark">

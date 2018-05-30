@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Akelote_e_Shop.Areas.Admin.Services;
+using Akelote_e_Shop.Areas.Admin.Services.DI;
 using Akelote_e_Shop.Models;
 using Microsoft.VisualBasic.ApplicationServices;
 
@@ -12,7 +14,12 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
 {
     public class UserController : Controller
     {
+        private readonly ImportExportService _importExportService;
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        public UserController() {
+            _importExportService = new ExcelImportExportService();
+        }
 
         // GET: Admin/User
         public ActionResult Index() {
@@ -96,6 +103,11 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
             user.IsBlocked = false;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: Admin/User/Export
+        public void Export() {
+            _importExportService.Export(db.Users.ToList(), "Users");
         }
     }
 }

@@ -5,13 +5,20 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Akelote_e_Shop.Areas.Admin.Services;
+using Akelote_e_Shop.Areas.Admin.Services.DI;
 using Akelote_e_Shop.Models;
 
 namespace Akelote_e_Shop.Areas.Admin.Controllers
 {
-    public class OrderController : Controller
-    {
+    public class OrderController : Controller {
+
+        private readonly ImportExportService _importExportService;
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        public OrderController() {
+            _importExportService = new ExcelImportExportService();
+        }
 
         // GET: Admin/Order
         public ActionResult Index() {
@@ -73,6 +80,11 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
             order.Status = OrderStatus.Cancelled;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: Admin/Order/Export
+        public void Export() {
+            _importExportService.Export(db.Order.ToList(), "Orders");
         }
     }
 }
