@@ -1,4 +1,5 @@
-﻿@model Akelote_e_Shop.Models.Item
+﻿@using Akelote_e_Shop.Models
+@model Akelote_e_Shop.Models.Item
 
 @{
     ViewBag.Title = "Create item";
@@ -9,7 +10,13 @@
     @Html.ActionLink("Back to list", "Index", "Item", null, new { @class = "btn btn-sm btn-primary" })
 }
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" })) {
+@section Scripts
+{
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/Content/item-create.js"></script>
+}
+
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -20,8 +27,8 @@
 
                 <div class="col-6">
 
-                    @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.DropDownList("CategoryId", null, "",  htmlAttributes: new { @class = "form-control" })
+                    @Html.LabelFor(model => model.CategoryId, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.DropDownList("CategoryId", null, "", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
 
                 </div>
@@ -45,7 +52,7 @@
                     @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
 
                 </div>
-                
+
                 <div class="col-6">
 
                     @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -59,7 +66,7 @@
             <div class="row">
 
 
-                <div class="col-6">
+                <div class="col">
 
                     @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                     @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
@@ -78,17 +85,19 @@
                 </div>
             </div>
 
-            <div class="row">
-                
-                <div class="col">
-                    
-                    <input type="submit" value="Create" class="btn btn-primary float-right" />
+        </div>
 
-                </div>
+        <div class="row">
+
+            <div class="col">
+
+                <input type="submit" value="Create" class="btn btn-primary float-right" />
 
             </div>
 
         </div>
 
     </div>
+
+
 }

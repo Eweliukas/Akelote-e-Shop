@@ -6,19 +6,19 @@
 
 @section actions
 {
-<div>
+    <div>
 
-    @Html.ActionLink("Back to list", "Index", "User", null, new { @class = "btn btn-sm btn-secondary" })
+        @Html.ActionLink("Back to list", "Index", "User", null, new { @class = "btn btn-sm btn-secondary" })
 
-    @if (Model.IsBlocked) {
-        @Html.ActionLink("Unblock", "Unblock", "User", new { id = Model.Id }, new { @class = "btn btn-sm btn-primary ml-2" })
-    }
-    else {
-        @Html.ActionLink("Block", "Block", "User", new { id = Model.Id }, new { @class = "btn btn-sm btn-primary ml-2" })
-    }
+        @if (Model.IsBlocked) {
+            @Html.ActionLink("Unblock", "Unblock", "User", new { id = Model.Id }, new { @class = "btn btn-sm btn-primary ml-2" })
+        }
+        else {
+            @Html.ActionLink("Block", "Block", "User", new { id = Model.Id }, new { @class = "btn btn-sm btn-primary ml-2" })
+        }
 
 
-</div>
+    </div>
 
 }
 
@@ -115,13 +115,14 @@
         @foreach (var item in Model.Orders) {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Date)</td>
                 <td>@Html.DisplayFor(modelItem => item.Status)</td>
                 <td>@Html.DisplayFor(modelItem => item.Destination)</td>
                 <td>@Html.DisplayFor(modelItem => item.Description)</td>
                 <td>@Html.DisplayFor(modelItem => item.OrderDiscount)</td>
                 <td>@Html.DisplayFor(modelItem => item.Rating)</td>
                 <td>
-                    @Html.ActionLink("Details", "Details", "Order", new { id = item.Id }, null)
+                    @Html.ActionLink("Details", "Details", "Order", new { id = item.Id }, null) | 
                     @Html.ActionLink("Complete", "Complete", "Order", new { id = item.Id }, null)
                 </td>
             </tr>

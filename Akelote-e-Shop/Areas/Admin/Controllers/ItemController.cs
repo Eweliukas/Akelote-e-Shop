@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using Akelote_e_Shop.Areas.Admin.Services;
 using Akelote_e_Shop.Areas.Admin.Services.DI;
 using Akelote_e_Shop.Models;
@@ -45,10 +46,26 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         }
 
         // GET: Admin/Item/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            if (id != null) {
+                var properties = db.Category.FirstOrDefault(c => c.Id == id)?.GetAllProperties();
+                ViewBag.Properties = properties;
+            }
+
             ViewBag.CategoryId = new SelectList(db.Category, "Id", "Title");
             return View();
+        }
+
+        // GET: Admin/Item/ItemProperties/1
+        public ActionResult ItemProperties(int id) {
+
+            Item item = db.Item.Find(id);
+            if (item == null) {
+                return HttpNotFound();
+            }
+            
+            return View(item);
         }
 
         // POST: Admin/Item/Create
@@ -58,11 +75,20 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,CategoryId,Title,Price,Description,Discount,Deleted")] Item item, IEnumerable<HttpPostedFileBase> images)
         {
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
+
                 db.Item.Add(item);
                 IncludeImages(item, images);
                 db.SaveChanges();
+
+//                var category = db.Category.Find(item.CategoryId);
+//                ItemProperty itemProperty = new ItemProperty();
+//                itemProperty.ItemPropertyId = 1;
+//                itemProperty.ItemId = 14;
+//                itemProperty.PropertyId = 9;
+//                db.ItemProperty.Add(itemProperty);
+//                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
@@ -81,12 +107,8 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         }
 
         // GET: Admin/Item/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Item item = db.Item.Find(id);
             if (item == null)
             {

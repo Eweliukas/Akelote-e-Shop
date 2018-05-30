@@ -1,4 +1,5 @@
-﻿@model Akelote_e_Shop.Models.Order
+﻿@using Akelote_e_Shop.Models
+@model Akelote_e_Shop.Models.Order
 
 @{
     ViewBag.Title = "Order details";
@@ -7,8 +8,10 @@
 @section actions
 {
     <div>
-        @Html.ActionLink("Complete", "Complete", "Order", new { id = Model.Id }, new { @class = "btn btn-sm btn-primary ml-2" })
-        @Html.ActionLink("Back to list", "Index", "Order", null, new { @class = "btn btn-sm btn-secondary" })
+        @if (Model.Status != OrderStatus.Completed) {
+            @Html.ActionLink("Complete", "Complete", "Order", new {id = Model.Id}, new {@class = "btn btn-sm btn-primary ml-2"})
+        }
+        @Html.ActionLink("Back to list", "Index", "Order", null, new {@class = "btn btn-sm btn-secondary"})
     </div>
 
 }
@@ -151,9 +154,7 @@
                 <td>@Html.DisplayFor(modelItem => item.Item.Discount)</td>
                 <td>@Html.DisplayFor(modelItem => item.Item.Deleted)</td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "Item", new { id = item.Id }, null) |
-                    @Html.ActionLink("Details", "Details", "Item", new { id = item.Id }, null) |
-                    @Html.ActionLink("Delete", "Delete", "Item", new { id = item.Id }, null)
+                    @Html.ActionLink("Details", "Details", "Item", new { id = item.Id }, null)
                 </td>
             </tr>
         }

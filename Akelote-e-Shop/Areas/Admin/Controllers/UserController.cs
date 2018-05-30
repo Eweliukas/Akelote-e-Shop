@@ -10,16 +10,10 @@ using Akelote_e_Shop.Areas.Admin.Services.DI;
 using Akelote_e_Shop.Models;
 using Microsoft.VisualBasic.ApplicationServices;
 
-namespace Akelote_e_Shop.Areas.Admin.Controllers
-{
-    public class UserController : Controller
-    {
-        private readonly ImportExportService _importExportService;
+namespace Akelote_e_Shop.Areas.Admin.Controllers {
+    public class UserController : Controller {
+        private readonly ImportExportService _importExportService = new ExcelImportExportService();
         private ApplicationDbContext db = new ApplicationDbContext();
-
-        public UserController() {
-            _importExportService = new ExcelImportExportService();
-        }
 
         // GET: Admin/User
         public ActionResult Index() {
@@ -74,7 +68,7 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         }
 
         // POST: Admin/User/Block/5
-        [HttpPost, ActionName("Post")]
+        [HttpPost, ActionName("Block")]
         [ValidateAntiForgeryToken]
         public ActionResult BlockConfirmed(string id) {
             var user = db.Users.Find(id);
@@ -83,7 +77,7 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Admin/User/Unblock/5
+        // GET: Admin/User/Block/5
         public ActionResult Unblock(string id) {
             if (String.IsNullOrEmpty(id)) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -95,8 +89,8 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
             return View(user);
         }
 
-        // POST: Admin/User/Unblock/5
-        [HttpPost, ActionName("Post")]
+        // POST: Admin/User/Block/5
+        [HttpPost, ActionName("Unblock")]
         [ValidateAntiForgeryToken]
         public ActionResult UnblockConfirmed(string id) {
             var user = db.Users.Find(id);
