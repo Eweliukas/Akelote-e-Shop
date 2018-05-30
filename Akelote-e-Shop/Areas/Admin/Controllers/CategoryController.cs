@@ -47,6 +47,7 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.ParentId = new SelectList(db.Category, "Id", "Title");
+
             return View();
         }
 
@@ -78,7 +79,12 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ParentId = new SelectList(db.Category, "Id", "Title", category.ParentId);
+
+            var descendantIds = category.Descendants().Select(d => d.Id);
+
+            var list = db.Category.Where(c => c.Id != id && !descendantIds.Contains(c.Id));
+
+            ViewBag.ParentId = new SelectList(list, "Id", "Title", category.ParentId);
             return View(category);
         }
 

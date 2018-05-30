@@ -13,59 +13,99 @@
 
 }
 
-    <div>
+<div>
 
-        <div class="row">
+    <div class="row">
 
-            <div class="col-6">
+        <div class="col-6">
 
-                <label>Title</label>
-                <strong>@Html.DisplayFor(model => model.Title)</strong>
-
-</div>
-
-            <div class="col-6">
-
-                <label>Category</label>
-                <strong>@Html.DisplayFor(model => model.Category.Title)</strong>
-
-</div>
+            <label>Title</label>
+            <strong>@Html.DisplayFor(model => model.Title)</strong>
 
         </div>
 
-        <div class="row">
+        <div class="col-6">
 
-            <div class="col-6">
-
-                <label>Price</label>
-                <strong>@Html.DisplayFor(model => model.Price)</strong>
-
-</div>
-
-            <div class="col-6">
-
-                <label>Discount</label>
-                @Html.DisplayFor(model => model.Discount)</strong>
-
-            </div>
+            <label>Category</label>
+            <strong>@Html.DisplayFor(model => model.Category.Title)</strong>
 
         </div>
 
-        <div class="row">
+    </div>
 
-            <div class="col-6">
+    <div class="row">
 
-                <label>Description</label>
-                <strong>@Html.DisplayFor(model => model.Description)</strong>
+        <div class="col-6">
 
-</div>
-
-            <div class="col-6">
-
-                <label>Deleted</label>
-                <strong>@Html.DisplayFor(model => model.Deleted)</strong>
-
-</div>
+            <label>Price</label>
+            <strong>@Html.DisplayFor(model => model.Price)</strong>
 
         </div>
+
+        <div class="col-6">
+
+            <label>Discount</label>
+            @Html.DisplayFor(model => model.Discount)</strong>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-6">
+
+            <label>Description</label>
+            <strong>@Html.DisplayFor(model => model.Description)</strong>
+
+        </div>
+
+        <div class="col-6">
+
+            <label>Deleted</label>
+            <strong>@Html.DisplayFor(model => model.Deleted)</strong>
+
+        </div>
+
+    </div>
+    
+    <hr/>
+    
+    <h4 class="text-center">Properties</h4>
+    <br/>
+    
+    <table class="table table-striped">
+
+        <thead class="thead-dark">
+
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+
+        </thead>
+
+
+        @foreach (var item in Model.ItemProperties) {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Property.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Property.Name)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Property", new { id = item.Property.Id }, null) |
+                    @Html.ActionLink("Details", "Details", "Property", new { id = item.Property.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Property", new { id = item.Property.Id }, null)
+                </td>
+            </tr>
+        }
+
+        @if (!Model.ItemProperties.Any()) {
+            <tr>
+                <td colspan="3">No data</td>
+            </tr>
+        }
+
+    </table>
+
+
 </div>

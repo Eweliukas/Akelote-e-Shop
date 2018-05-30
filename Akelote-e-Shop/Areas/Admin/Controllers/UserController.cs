@@ -28,8 +28,8 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         }
 
         // GET: Admin/User/Details/5
-        public ActionResult Details(int? id) {
-            if (id == null) {
+        public ActionResult Details(string id) {
+            if (String.IsNullOrEmpty(id)) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = db.Users.Find(id);
@@ -40,8 +40,8 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         }
 
         // GET: Admin/User/Delete/5
-        public ActionResult Delete(int? id) {
-            if (id == null) {
+        public ActionResult Delete(string id) {
+            if (String.IsNullOrEmpty(id)) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = db.Users.Find(id);
@@ -62,8 +62,8 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         }
 
         // GET: Admin/User/Block/5
-        public ActionResult Block(int? id) {
-            if (id == null) {
+        public ActionResult Block(string id) {
+            if (String.IsNullOrEmpty(id)) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = db.Users.Find(id);
@@ -74,9 +74,9 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         }
 
         // POST: Admin/User/Block/5
-        [HttpPost, ActionName("Put")]
+        [HttpPost, ActionName("Post")]
         [ValidateAntiForgeryToken]
-        public ActionResult BlockConfirmed(int id) {
+        public ActionResult BlockConfirmed(string id) {
             var user = db.Users.Find(id);
             user.IsBlocked = true;
             db.SaveChanges();
@@ -84,8 +84,8 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         }
 
         // GET: Admin/User/Unblock/5
-        public ActionResult Unblock(int? id) {
-            if (id == null) {
+        public ActionResult Unblock(string id) {
+            if (String.IsNullOrEmpty(id)) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = db.Users.Find(id);
@@ -96,9 +96,9 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         }
 
         // POST: Admin/User/Unblock/5
-        [HttpPost, ActionName("Put")]
+        [HttpPost, ActionName("Post")]
         [ValidateAntiForgeryToken]
-        public ActionResult UnblockConfirmed(int id) {
+        public ActionResult UnblockConfirmed(string id) {
             var user = db.Users.Find(id);
             user.IsBlocked = false;
             db.SaveChanges();
