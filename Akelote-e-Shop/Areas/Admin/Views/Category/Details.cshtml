@@ -39,5 +39,44 @@
         </div>
 
     </div>
+    
+    <hr/>
+
+    <h4 class="text-center">Properties</h4>
+    
+    <br />
+    
+    <table class="table table-striped">
+
+        <thead class="thead-dark">
+
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+
+        </thead>
+
+
+        @foreach (var item in Model.Properties) {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Property", new { id = item.Id }, null) |
+                    @Html.ActionLink("Details", "Details", "Property", new { id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Property", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+
+        @if (!Model.Properties.Any()) {
+            <tr>
+                <td colspan="3">No data</td>
+            </tr>
+        }
+
+    </table>
 
 </div>

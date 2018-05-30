@@ -1,85 +1,139 @@
 ﻿@model Akelote_e_Shop.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "User details";
+}
+
+@section actions
+{
+<div>
+
+    @Html.ActionLink("Back to list", "Index", "User", null, new { @class = "btn btn-sm btn-secondary" })
+
+    @if (Model.IsBlocked) {
+        @Html.ActionLink("Unblock", "Unblock", "User", new { id = Model.Id }, new { @class = "btn btn-sm btn-primary ml-2" })
+    }
+    else {
+        @Html.ActionLink("Block", "Block", "User", new { id = Model.Id }, new { @class = "btn btn-sm btn-primary ml-2" })
+    }
+
+
+</div>
+
 }
 
 <div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+    <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </dt>
+        <div class="col-6">
 
-        <dd>
-            @Html.DisplayFor(model => model.PasswordHash)
-        </dd>
+            <label>Email</label>
+            <strong>@Html.DisplayFor(model => model.Email)</strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SecurityStamp)
-        </dt>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.SecurityStamp)
-        </dd>
+        <div class="col-6">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+            <label>Phone number</label>
+            <strong>@Html.DisplayFor(model => model.PhoneNumber)</strong>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
+    <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+        <div class="col-6">
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <label>Username</label>
+            <strong>@Html.DisplayFor(model => model.UserName)</strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+        <div class="col-6">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+            <label>First name</label>
+            <strong>@Html.DisplayFor(model => model.FirstName)</strong>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsBlocked)
-        </dt>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsBlocked)
-        </dd>
+    <div class="row">
 
-    </dl>
+        <div class="col-6">
+
+            <label>Last name</label>
+            <strong>@Html.DisplayFor(model => model.LastName)</strong>
+
+        </div>
+
+        <div class="col-6">
+
+            <label>Address</label>
+            <strong>@Html.DisplayFor(model => model.Address)</strong>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-6">
+
+            <label>Is blocked</label>
+            <strong>@Html.DisplayFor(model => model.IsBlocked)</strong>
+
+        </div>
+
+    </div>
+
+    <hr />
+
+    <h4>Orders</h4>
+
+    <br />
+
+    <table class="table table-striped">
+
+        <thead class="thead-dark">
+
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Destination</th>
+                <th>Description</th>
+                <th>Order discount</th>
+                <th>Rating</th>
+                <th>Actions</th>
+            </tr>
+
+        </thead>
+
+        @foreach (var item in Model.Orders) {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                <td>@Html.DisplayFor(modelItem => item.Destination)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.OrderDiscount)</td>
+                <td>@Html.DisplayFor(modelItem => item.Rating)</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Order", new { id = item.Id }, null)
+                    @Html.ActionLink("Complete", "Complete", "Order", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+
+        @if (!Model.Orders.Any()) {
+            <tr>
+                <td colspan="8">No data</td>
+            </tr>
+        }
+
+    </table>
+
+
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>

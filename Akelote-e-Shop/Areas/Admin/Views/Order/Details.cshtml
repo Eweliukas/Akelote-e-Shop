@@ -115,5 +115,55 @@
         </div>
 
     </div>
+    
+    <hr/>
+    
+    <h4>Items</h4>
+    
+    <br/>
+    
+    <table class="table table-striped">
+
+        <thead class="thead-dark">
+
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Discount</th>
+            <th>Deleted</th>
+            <th>Actions</th>
+        </tr>
+
+        </thead>
+
+
+
+        @foreach (var item in Model.OrderItems) {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Item.Category.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Item.Price)</td>
+                <td>@Html.DisplayFor(modelItem => item.Item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.Item.Discount)</td>
+                <td>@Html.DisplayFor(modelItem => item.Item.Deleted)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Item", new { id = item.Id }, null) |
+                    @Html.ActionLink("Details", "Details", "Item", new { id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Item", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+
+        @if (!Model.OrderItems.Any()) {
+            <tr>
+                <td colspan="8">No data</td>
+            </tr>
+        }
+
+    </table>
 
 </div>
