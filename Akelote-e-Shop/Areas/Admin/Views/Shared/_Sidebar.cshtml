@@ -9,10 +9,18 @@
             <span>Sales</span>
         </h6>
         <ul class="nav flex-column">
-            @Html.ActionLink("Categories", "Index", "Category")
-            @Html.ActionLink("Properties", "Index", "Property")
-            @Html.ActionLink("Items", "Index", "Item")
-            @Html.ActionLink("Orders", "Index", "Orders")
+            <li class="nav-item">
+                @Html.ActionLink("Categories", "Index", "Category")
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Properties", "Index", "Property")
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Items", "Index", "Item")
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Orders", "Index", "Orders")
+            </li>
         </ul>
     </div>
 </nav>

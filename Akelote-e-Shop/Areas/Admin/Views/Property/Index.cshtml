@@ -1,39 +1,47 @@
 ﻿@model IEnumerable<Akelote_e_Shop.Models.Property>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Properties list";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@section actions
+{
+    @Html.ActionLink("Create", "Create", "Property", null, new {@class="btn btn-sm btn-primary"})
 }
+
+<table class="table table-striped">
+
+    <thead class="thead-dark">
+
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Category.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>Actions</th>
+        </tr>
+
+    </thead>
+
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+    
+    @if (Model.Count() == 0) {
+        <tr>
+            <td colspan="4">No data</td>
+        </tr>
+    }
 
 </table>
