@@ -39,7 +39,7 @@ namespace Akelote_e_Shop.Models
 
         public static string PriceToReadable(int price)
         {
-            return (price / 100) + "," + (price % 100).ToString().PadLeft(2, '0') + " €";
+            return (price / 100) + "." + (price % 100).ToString().PadLeft(2, '0') + " €";
         }
     }
 }

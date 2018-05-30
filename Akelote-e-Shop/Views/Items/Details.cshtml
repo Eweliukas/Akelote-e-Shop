@@ -1,7 +1,7 @@
 ﻿@model Akelote_e_Shop.Models.Item
 
 @{
-    ViewBag.Title = "Item details";
+    ViewBag.Title = Model.Title;
 }
 
 <style type="text/css">
@@ -15,93 +15,120 @@
 
     .item-details-main {
         margin-left: 30px;
+        width: calc(100% - 270px);
+    }
+
+    .item-details-image {
+        padding: 20px;
+        background: #EEE;
+    }
+
+    .item-details-image .carousel-inner {
+        height: 200px;
+    }
+
+    .item-details-image .carousel-inner > .active {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .item-details-image .carousel-inner > .next,
+    .item-details-image .carousel-inner > .prev {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .item-details-image img {
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+    .item-details-price {
+        font-size: 30px;
+        text-align: right;
+        background: gray;
+        color: white;
     }
 </style>
+
+
+
+
 <div class="item-details">
-    @if (Model.Images.Any())
-    {
-        <div class="item-details-image">
-        @foreach (var image in Model.Images)
-        {
-            <img alt="@image.Caption" src="~/Content/@image.HyperLink" />
-            @* TODO: display other images as a carousel *@
-            break;
-        }
-        </div>
-    }
-
-    <div class="item-details-main">
-        <dl class="dl-horizontal">
-
-            <dt>
-                @Html.DisplayNameFor(model => model.CategoryId)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CategoryId)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Title)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ReadablePrice)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Discount)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Discount)
-            </dd>
-
-        </dl>
-    </div>
-</div>
-
-<div>
-    <table class="table table-striped">
-        <tbody class="text-center">
-            @foreach (var property in Model.Category.GetAllProperties())
+    <div class="item-details-image">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            @if (Model.Images.Any())
             {
-                <tr>
-                    <td>
-                        @Html.Label(property.Name)
-                    </td>
-                    <td>
-                        @{
-                            var itemProperty = Model.ItemProperties
-                                .SingleOrDefault(p => p.PropertyId == property.Id);
-                        }
-
-                        @if (itemProperty != null)
+                if (Model.Images.Count > 1)
+                {
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                }
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        @foreach (var image in Model.Images)
                         {
-                            @Html.Label(itemProperty.PropertyValue);
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="/Content/@image.HyperLink" alt="@image.Caption">
+                            </div>
                         }
-                    </td>
-                </tr>
+                    </div>
+                    @if (Model.Images.Count > 1)
+                    {
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    }
+                </div>
             }
-        </tbody>
-    </table>
-</div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </div>
+    </div>
+
+        <div class="item-details-main">
+            @foreach (var line in Model.Description.Split('\n'))
+            {
+                <p>@line</p>
+            }
+            <div class="item-details-price">
+                @Model.ReadablePrice
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <table class="table table-striped">
+            <tbody class="text-center">
+                @foreach (var property in Model.Category.GetAllProperties())
+                {
+                    <tr>
+                        <td>
+                            @Html.Label(property.Name)
+                        </td>
+                        <td>
+                            @{
+                                var itemProperty = Model.ItemProperties
+                                    .SingleOrDefault(p => p.PropertyId == property.Id);
+                            }
+
+                            @if (itemProperty != null)
+                            {
+                                @Html.Label(itemProperty.PropertyValue);
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
