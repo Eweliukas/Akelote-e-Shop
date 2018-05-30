@@ -16,6 +16,8 @@ namespace Akelote_e_Shop.Models
         [Required]
 
         public int Price { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public int? Discount { get; set; }
         public bool Deleted { get; set; }

@@ -1,66 +1,71 @@
 ﻿@model Akelote_e_Shop.Models.Item
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Item details";
 }
 
-<h2>Details</h2>
+@section actions
+{
+    <div>
+        @Html.ActionLink("Edit", "Edit", "Item", new { id = Model.Id }, new { @class = "btn btn-sm btn-primary ml-2" })
+        @Html.ActionLink("Back to list", "Index", "Item", null, new { @class = "btn btn-sm btn-secondary" })
+    </div>
 
-<div>
-    <h4>Item</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.Title)
-        </dt>
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.Title)
-        </dd>
+    <div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+        <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+            <div class="col-6">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                <label>Title</label>
+                <strong>@Html.DisplayFor(model => model.Title)</strong>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Discount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Discount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Deleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Deleted)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+            <div class="col-6">
+
+                <label>Category</label>
+                <strong>@Html.DisplayFor(model => model.Category.Title)</strong>
+
+</div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-6">
+
+                <label>Price</label>
+                <strong>@Html.DisplayFor(model => model.Price)</strong>
+
+</div>
+
+            <div class="col-6">
+
+                <label>Discount</label>
+                @Html.DisplayFor(model => model.Discount)</strong>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-6">
+
+                <label>Description</label>
+                <strong>@Html.DisplayFor(model => model.Description)</strong>
+
+</div>
+
+            <div class="col-6">
+
+                <label>Deleted</label>
+                <strong>@Html.DisplayFor(model => model.Deleted)</strong>
+
+</div>
+
+        </div>
+</div>

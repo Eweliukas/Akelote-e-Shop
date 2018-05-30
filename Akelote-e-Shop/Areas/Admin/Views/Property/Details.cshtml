@@ -1,7 +1,7 @@
 ﻿@model Akelote_e_Shop.Models.Property
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Property details";
 }
 
 @section actions
@@ -19,12 +19,12 @@
 
         <div class="col-6">
             <label>Name</label>
-            <strong> @Html.DisplayNameFor(model => model.Name)</strong>
+            <strong> @Html.DisplayFor(model => model.Name)</strong>
         </div>
 
         <div class="col-6">
             <label>Category</label>
-            <strong>@Html.DisplayNameFor(model => model.Category.Title)</strong>
+            <strong>@Html.DisplayFor(model => model.Category.Title)</strong>
         </div>
 
     </div>
