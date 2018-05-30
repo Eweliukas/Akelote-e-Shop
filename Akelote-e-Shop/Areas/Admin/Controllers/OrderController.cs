@@ -51,7 +51,7 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         }
 
         // POST: Admin/Order/Complete/5
-        [HttpPost, ActionName("Put")]
+        [HttpPost, ActionName("Complete")]
         [ValidateAntiForgeryToken]
         public ActionResult CompleteConfirmed(int id) {
             Order order = db.Order.Find(id);
@@ -60,8 +60,8 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Admin/Order/Cancel/5
-        public ActionResult Cancel(int? id) {
+        // GET: Admin/Order/Delete/5
+        public ActionResult Delete(int? id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -72,12 +72,12 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
             return View(order);
         }
 
-        // POST: Admin/Order/Cancel/5
-        [HttpPost, ActionName("Put")]
+        // POST: Admin/Order/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult CancelConfirmed(int id) {
+        public ActionResult DeleteConfirmed(int id) {
             Order order = db.Order.Find(id);
-            order.Status = OrderStatus.Cancelled;
+            db.Order.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

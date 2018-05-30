@@ -79,13 +79,13 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
                 db.Item.Add(item);
                 db.SaveChanges();
 
-                var category = db.Category.Find(item.CategoryId);
-                ItemProperty itemProperty = new ItemProperty();
-                itemProperty.ItemPropertyId = 1;
-                itemProperty.ItemId = 14;
-                itemProperty.PropertyId = 9;
-                db.ItemProperty.Add(itemProperty);
-                db.SaveChanges();
+//                var category = db.Category.Find(item.CategoryId);
+//                ItemProperty itemProperty = new ItemProperty();
+//                itemProperty.ItemPropertyId = 1;
+//                itemProperty.ItemId = 14;
+//                itemProperty.PropertyId = 9;
+//                db.ItemProperty.Add(itemProperty);
+//                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }

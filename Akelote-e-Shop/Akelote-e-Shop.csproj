@@ -370,8 +370,8 @@
     <Content Include="Areas\Admin\Views\Order\Complete.cshtml" />
     <Content Include="Areas\Admin\Views\User\Block.cshtml" />
     <Content Include="Areas\Admin\Views\User\Unblock.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\Cancel.cshtml" />
     <Content Include="Areas\Admin\Views\Item\ItemProperties.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
