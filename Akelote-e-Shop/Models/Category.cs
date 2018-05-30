@@ -11,7 +11,7 @@ namespace Akelote_e_Shop.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public int? ParentId { get; set; }
-        [Range(0, 100, ErrorMessage = "The value must be between 0 and 100")]
+        [Range(0, int.MaxValue, ErrorMessage = "The value must be greater than 0")]
         public int? Discount { get; set; }
 
         public virtual Category Parent { get; set; }
