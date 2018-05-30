@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -55,17 +56,28 @@ namespace Akelote_e_Shop.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CategoryId,Title,Price,Description,Discount,Deleted")] Item item)
+        public ActionResult Create([Bind(Include = "Id,CategoryId,Title,Price,Description,Discount,Deleted")] Item item, IEnumerable<HttpPostedFileBase> images)
         {
             if (ModelState.IsValid)
             {
                 db.Item.Add(item);
+                IncludeImages(item, images);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.CategoryId = new SelectList(db.Category, "Id", "Title", item.CategoryId);
             return View(item);
+        }
+
+        private void IncludeImages(Item item, IEnumerable<HttpPostedFileBase> images)
+        {
+            foreach (var image in images)
+            {
+                var name = Guid.NewGuid() + Path.GetExtension(image.FileName);
+                image.SaveAs(Path.Combine(Server.MapPath("/Content"), name));
+                db.Image.Add(new Image { Item = item, Caption = item.Title, HyperLink = name });
+            }
         }
 
         // GET: Admin/Item/Edit/5

@@ -32,9 +32,9 @@ else
     <div class="catalog">
         @foreach (var item in Model.Items)
         {
-            <div class="catalog-item">
+            <div class="catalog-item" data-id="@item.Id">
                 <div class="catalog-item-image">
-                    <a href="/Items/Details/@item.Id"><img src="@(item.Images.Select(i => i.HyperLink).FirstOrDefault() ?? "/Content/NoImage.png")" /></a>
+                    <a href="/Items/Details/@item.Id"><img src="/Content/@(item.Images.Select(i => i.HyperLink).FirstOrDefault() ?? "NoImage.png")" /></a>
                 </div>
                 <div class="catalog-item-title">
                     @Html.ActionLink(item.Title, "Details", "Items", new { id = item.Id }, null)
@@ -43,7 +43,7 @@ else
                     @item.ReadablePrice
                 </div>
                 <div class="catalog-item-add-to-cart">
-                    <a href="#" class="add-to-cart" data-id="@item.Id">Add to Cart</a>
+                    <a href="#" class="add-to-cart" data-id="@item.Id" data-animation-target=".catalog-item[data-id=@item.Id]">Add to Cart</a>
                 </div>
             </div>
         }

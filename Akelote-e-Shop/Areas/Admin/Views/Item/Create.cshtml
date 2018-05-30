@@ -9,7 +9,7 @@
     @Html.ActionLink("Back to list", "Index", "Item", null, new { @class = "btn btn-sm btn-primary" })
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" })) {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -67,6 +67,15 @@
 
                 </div>
 
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Images</label>
+                    <input type="file" class="image-upload" name="images" multiple />
+                    @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
+
+                </div>
             </div>
 
             <div class="row">
