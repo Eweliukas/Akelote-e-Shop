@@ -10,6 +10,7 @@ using System.Collections.Generic;
 
 namespace Akelote_e_Shop.Controllers
 {
+    [Authorize]
     public class CheckoutController : Controller
     {
         private ApplicationDbContext _context;

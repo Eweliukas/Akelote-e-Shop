@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 namespace Akelote_e_Shop.Controllers.API
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private ApplicationDbContext _context;

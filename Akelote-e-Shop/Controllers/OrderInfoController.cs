@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Akelote_e_Shop.Controllers
 {
+    [Authorize]
     public class OrderInfoController : Controller
     {
         private ApplicationDbContext _context;
