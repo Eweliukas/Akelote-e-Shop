@@ -21,7 +21,7 @@ namespace Akelote_e_Shop.Models
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [Range(0, 100, ErrorMessage = "The value must be between 0 and 100")]
+        [Range(0, int.MaxValue, ErrorMessage = "The value must be greater than 0")]
         public int? Discount { get; set; }
         public bool Deleted { get; set; }
 
