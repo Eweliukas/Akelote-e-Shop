@@ -1,6 +1,7 @@
 ﻿@model Akelote_e_Shop.Models.Item
+@using Akelote_e_Shop.Models
 
-@section Scripts 
+@section Scripts
 {
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/add-to-cart.js"></script>
@@ -37,7 +38,7 @@
                     @foreach (var image in Model.Images)
                     {
                         <div class="carousel-item @((j++ == 0) ? "active" : string.Empty)">
-                            <img class="d-block w-100" src="/Content/@image.HyperLink" alt="@image.Caption">
+                            <img class="d-block w-100" style="max-width:300px;height:auto;" src="/Content/@image.HyperLink" alt="@image.Caption">
                         </div>
                     }
                 </div>
@@ -91,10 +92,19 @@
             </table>
         </div>
 
-        <div class="item-details-price-container">
-            <p>Add to cart:</p>
-            <a href="#" class="add-to-cart item-details-price" data-id="@Model.Id" data-animation-target="@(Model.Images.Any() ? ".item-details-image" : ".item-details-price")">
-                @Model.ReadablePrice
+        <div class="item-details-price-container" style="font-size:24pt;">
+            @Model.ReadablePrice
+            @if (Model.Discount != null && Model.Discount != 0)
+            {
+            <span style="font-size:24pt; color:red">
+                (-@Item.PriceToReadable(Model.Discount ?? 0))
+            </span>
+            }
+        </div>
+
+        <div>
+            <a href="#" class="add-to-cart" data-id="@Model.Id" data-animation-target="@(Model.Images.Any() ? ".item-details-image" : ".item-details-price-container")">
+                Add to cart
             </a>
         </div>
     </div>
