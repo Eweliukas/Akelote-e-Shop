@@ -11,6 +11,7 @@ using Akelote_e_Shop.Models;
 using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Akelote_e_Shop.Areas.Admin.Controllers {
+    [Authorize(Roles = "CanUseAdminAccess")]
     public class UserController : Controller {
         private readonly ImportExportService _importExportService = new ExcelImportExportService();
         private ApplicationDbContext db = new ApplicationDbContext();

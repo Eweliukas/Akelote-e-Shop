@@ -11,6 +11,7 @@ using Akelote_e_Shop.Models;
 
 namespace Akelote_e_Shop.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "CanUseAdminAccess")]
     public class OrderController : Controller {
 
         private readonly ImportExportService _importExportService;
