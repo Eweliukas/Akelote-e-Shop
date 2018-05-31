@@ -12,6 +12,13 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             @if (Request.IsAuthenticated) {
+                if (User.IsInRole("CanUseAdminAccess"))
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Move to Admin menu", "Item", "Admin", routeValues: null, htmlAttributes: new { id = "adminLink", @class = "nav-link" });
+                    </li>
+                }
+
                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                 {
                     @Html.AntiForgeryToken()
